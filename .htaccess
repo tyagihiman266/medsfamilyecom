@@ -1,0 +1,71 @@
+﻿Options +FollowSymlinks
+
+ 
+RewriteEngine on
+
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+
+ 
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+RewriteRule ^product/(.*)/(.*).htm$ products.php?cat_id=$1&p_name=$2
+RewriteRule ^salt/(.*)/(.*).htm$ product_salt.php?cat_id=$1&s_name=$2
+RewriteRule ^salt_product/(.*)/(.*).htm$ saltsproduct.php?cat_id=$1&s_name=$2
+ RewriteRule ^category/(.*).htm$ category.php?cat_id=$1
+ RewriteRule ^cat/(.*).htm$ mycat.php?cat_id=$1
+RewriteRule ^dashboard$ dashboard.php
+RewriteRule ^view_product$ view_product.php
+RewriteRule ^add_product$ add_product.php
+RewriteRule ^index$ index.php
+RewriteRule ^add_product_package$ add_product_package.php
+RewriteRule ^manage_package$ manage_package.php
+RewriteRule ^manage_category$ manage_category.php
+RewriteRule ^add_category$ add_category.php
+RewriteRule ^user_list$ user_list.php
+RewriteRule ^add_user$ add_user.php
+RewriteRule ^add_product_company$ add_product_company.php
+RewriteRule ^manage_company$ manage_company.php
+RewriteRule ^edit_profile$ edit_profile.php
+RewriteRule ^changepass$ changepass.php
+RewriteRule ^manage_order$ manage_order.php
+RewriteRule ^view_order$ view_order.php
+RewriteRule ^manage_shipping$ manage_shipping.php
+RewriteRule ^manage_coupon$ manage_coupon.php
+RewriteRule ^add_coupon$ add_coupon.php
+RewriteRule ^add_shipping$ add_shipping.php
+RewriteRule ^edit_product$ edit_product.php
+RewriteRule ^signup$ register.php
+RewriteRule ^signin$ login.php
+RewriteRule ^signupcheckout$ registercheckout.php
+RewriteRule ^signincheckout$ logincheckout.php
+RewriteRule ^logout$ logout.php
+RewriteRule ^cart$ cart.php
+RewriteRule ^checkout$ checkout.php
+RewriteRule ^my-account$ my-account.php
+RewriteRule ^my-order$ my-order.php
+RewriteRule ^my-wishlist$ my-wishlist.php
+RewriteRule ^thankyou$ thank-you.php
+RewriteRule ^my-account$ my-account.php
+RewriteRule ^best-seller$ best_seller.php
+RewriteRule ^view-order$ view-order-details.php
+
+
+
+#RewriteRule ^ajax/getpackages$ getpackages.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#RewriteRule ^products_(.*)/(.*)-p-(.*)$ product.php?cat_id=$1&cat_name=$2&page=$3

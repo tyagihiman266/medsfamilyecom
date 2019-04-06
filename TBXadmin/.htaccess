@@ -1,0 +1,60 @@
+Options +FollowSymlinks
+
+ 
+RewriteEngine on
+
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+
+ 
+RewriteCond %{REQUEST_FILENAME} !-d
+
+ 
+
+RewriteRule ^dashboard$ dashboard.php
+RewriteRule ^view_product$ view_product.php
+RewriteRule ^add_product$ add_product.php
+RewriteRule ^index$ index.php
+RewriteRule ^add_product_package$ add_product_package.php
+RewriteRule ^manage_package$ manage_package.php
+RewriteRule ^manage_category$ manage_category.php
+RewriteRule ^add_category$ add_category.php
+RewriteRule ^user_list$ user_list.php
+RewriteRule ^add_user$ add_user.php
+RewriteRule ^add_product_company$ add_product_company.php
+RewriteRule ^manage_company$ manage_company.php
+RewriteRule ^edit_profile$ edit_profile.php
+RewriteRule ^changepass$ changepass.php
+RewriteRule ^manage_order$ manage_order.php
+RewriteRule ^view_order$ view_order.php
+RewriteRule ^manage_shipping$ manage_shipping.php
+RewriteRule ^manage_coupon$ manage_coupon.php
+RewriteRule ^add_coupon$ add_coupon.php
+RewriteRule ^add_shipping$ add_shipping.php
+RewriteRule ^edit_product$ edit_product.php
+RewriteRule ^manage_product_salt$ manage_product_salt.php
+RewriteRule ^add_productsalt$ add_productsalt.php
+RewriteRule ^product_import$ add_product_import.php
+RewriteRule ^import_brand$ add_company_import.php
+RewriteRule ^import_product_varient$ import_product_varient.php
+RewriteRule ^import_package$ add_import_package.php
+RewriteRule ^manage_varient$ manage_pvarient.php
+RewriteRule ^add_product_varient$ add_product_varient.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#RewriteRule ^products_(.*)/(.*)-p-(.*)$ product.php?cat_id=$1&cat_name=$2&page=$3
