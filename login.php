@@ -15,12 +15,16 @@ if($_REQUEST['submitlogin']=='yes')
 
 
                    $query = "SELECT * FROM user_data where password ='".$password."' and  email ='".$email."' ";
-                   $row = $objU->getResult($query);
-                   $num_rows = count($row);
+				   $row = $objU->getResult($query);
+				   $num_rows = count($row);
 					if($num_rows==1)
-					{
+					{	
 						//echo "yes";
-						header('Location:http://localhost:27/ecom/index');
+						echo "<script>
+						//alert('Logged In!');
+						window.location.href='http://localhost:27/ecom/index';
+						</script>";
+						//header('Location:http://localhost:27/ecom/index');
 					}
 					else
 					{
@@ -77,9 +81,9 @@ if($_REQUEST['submitlogin']=='yes')
 								<label for="">Password <span class="color-red">*</span></label>
 								<input type="password" name="password" class="form-control" id="" placeholder="" required>
 							</div>
-							<input type="submit" class="sign-in" value="Sign In	">
+							<input type="submit" class="sign-in" value="Sign In">
 							<button class="forget-password" data-toggle="modal" data-target="#main-model">forget your password?</button>
-							<p class="requre-f">*requred fields</p>
+							<p class="requre-f">*required fields</p>
 						</form>
 					</div>
 					<div class="col-md-6 create-acc-sec">
