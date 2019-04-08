@@ -20,7 +20,7 @@ if($_REQUEST['submitlogin']=='yes')
 					if($num_rows==1)
 					{
 						//echo "yes";
-						header('Location:index.php');
+						header('Location:http://localhost:27/ecom/index');
 					}
 					else
 					{
