@@ -5,7 +5,7 @@ $keyword="All medicin available, guide for online medicine order, guide for medi
 $description="Read step by step information for ordering medicine online and phone ";
 include "include/header.php";
 
-if($_REQUEST['submitlogin']=='yes') 
+if($_REQUEST['submitlogin']=='yes')     
                    {
 
                    $email = $_POST['username'] ;   
