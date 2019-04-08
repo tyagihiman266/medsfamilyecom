@@ -1,8 +1,12 @@
 <?php 
 include "include/header.php";
+session_start();
 //print_r($_SESSION);
 //testing commit;
 //finaltest
+$user_email=$_SESSION['user_email'];
+//echo $user_email;
+
 ?>
 <section class="clearfix">
 	<div class="container-fluid">
@@ -183,7 +187,17 @@ include "include/header.php";
 													<label for="">Password <span class="color-red">*</span></label>
 													<input type="password" name="password" class="form-control" id="" placeholder="" required="">
 												</div>
+												<?php
+												echo $user_email;
+												if($user_email==true)
+												{
+													echo "hh";
+												}
+												else
+												{
+												?>
 												<button type="submit" class="sign-in">sign in</button>
+												<?php } ?>
 												<button class="forget-password" data-toggle="modal" data-target="#main-model">forget your password?</button>
 												<p class="requre-f">*requred fields</p>
 											</form>

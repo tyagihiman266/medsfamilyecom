@@ -12,7 +12,8 @@ if($_REQUEST['submitlogin']=='yes')
 				   $email = $_POST['username'] ;  
 				   $password=($_POST['password']); 
                    $password = base64_encode($password); 
-
+					session_start();
+					$_SESSION['user_email']=$email;
 
                    $query = "SELECT * FROM user_data where password ='".$password."' and  email ='".$email."' ";
 				   $row = $objU->getResult($query);
@@ -24,7 +25,7 @@ if($_REQUEST['submitlogin']=='yes')
 						//alert('Logged In!');
 						window.location.href='http://localhost:27/ecom/index';
 						</script>";
-						//header('Location:http://localhost:27/ecom/index');
+						//header("Location:http://localhost:27/ecom/index);
 					}
 					else
 					{
