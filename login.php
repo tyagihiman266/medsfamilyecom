@@ -4,6 +4,7 @@ $pagetitle="pharmacy";
 $keyword="All medicin available";
 $description="pharmacy Website";
 include "include/header.php";
+//test
 
 if($_REQUEST['submitlogin']=='yes') 
                    {
@@ -18,7 +19,7 @@ if($_REQUEST['submitlogin']=='yes')
                    $num_rows = count($row);
 					if($num_rows==1)
 					{
-						
+
 					}
 
 
