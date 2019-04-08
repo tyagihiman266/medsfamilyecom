@@ -4,6 +4,7 @@ session_start();
 //print_r($_SESSION);
 //testing commit;
 //finaltest
+
 $user_email=$_SESSION['user_email'];
 //echo $user_email;
 
