@@ -12,6 +12,7 @@ if($_REQUEST['submitlogin']=='yes')
 				   $password = base64_encode($_POST['password']); 
 				   //""hello world"
 
+				   //"testing commit"
 
                    $query = "SELECT * FROM user_data where password ='".$password."' and  email ='".$email."' ";
                    $row = $objU->getResult($query);
