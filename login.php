@@ -19,14 +19,16 @@ if($_REQUEST['submitlogin']=='yes')
                    $num_rows = count($row);
 					if($num_rows==1)
 					{
+						//echo "yes";
 						header('Location:index.php');
 					}
 					else
 					{
+						// echo "No";
 						echo "<script>
 						alert('Your session is about to expire!');
 						window.location.href('http://localhost:27/ecom/signin');
-						</script>";
+						</script>"; 
 					}
 
 
