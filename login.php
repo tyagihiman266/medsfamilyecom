@@ -8,15 +8,21 @@ include "include/header.php";
 if($_REQUEST['submitlogin']=='yes') 
                    {
 
-                   $email = $_POST['username'] ;   
-                   $password = base64_encode($_POST['password']); 
+				   $email = $_POST['username'] ;  
+				   $password=($_POST['password']); 
+                   $password = base64_encode($password); 
 
 
                    $query = "SELECT * FROM user_data where password ='".$password."' and  email ='".$email."' ";
                    $row = $objU->getResult($query);
                    $num_rows = count($row);
+					if($num_rows==1)
+					{
+						
+					}
 
-                   $status = $row[0]['status'];
+
+                  /* $status = $row[0]['status'];
                    $_SESSION['fname'] = $row[0]['fname'];
                     $_SESSION['lname'] = $row[0]['lname'];
                     $_SESSION['user_email'] = $email;
@@ -33,7 +39,8 @@ if($_REQUEST['submitlogin']=='yes')
                     }elseif($status == 3){
                          $_SESSION['sess_msg_login']='Your account is block. Please connect to service provider.';  
                    
-                    }
+					} */
+					
                     }
                    
 ?>
@@ -45,10 +52,12 @@ if($_REQUEST['submitlogin']=='yes')
 				<h3 class="login-sec-top">Customer Login</h3>
 				<div class="login-warp clearfix">
 					<div class="col-md-6 login-sec">
+					
+					
 						<h3>Registered Customers</h3>
 						<?php echo $_SESSION['sess_msg_login']; ?>
 						<p>If you have an account sign in with your email address</p>
-						<form action="" method="POST" role="form" class="custom-form">
+						<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" role="form" class="custom-form">
 							 <input type="hidden" name="submitlogin" value="yes">
 							<div class="form-group">
 								<label for="">Email <span class="color-red">*</span></label>
@@ -58,7 +67,7 @@ if($_REQUEST['submitlogin']=='yes')
 								<label for="">Password <span class="color-red">*</span></label>
 								<input type="password" name="password" class="form-control" id="" placeholder="" required>
 							</div>
-							<button type="submit" class="sign-in">sign in</button>
+							<input type="submit" class="sign-in" value="Sign In	">
 							<button class="forget-password" data-toggle="modal" data-target="#main-model">forget your password?</button>
 							<p class="requre-f">*requred fields</p>
 						</form>

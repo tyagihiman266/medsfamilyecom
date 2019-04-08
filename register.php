@@ -12,8 +12,8 @@ include "include/header.php";
                         $lname = $_POST['lastname'];
                         $name= $fname.' '.$lname;
                         $email = $_POST['email'];   
-                // $password = $_POST['password'];
-                  $password = base64_encode($_POST['password']);
+                 $password = $_POST['password'];
+                  $password = base64_encode($password);
                 //   $is_allergies = $_POST['allergies'];
                 //   $allergieproduct = $_POST['allergen'];
                 //   $is_medication = $_POST['is_medication'];
@@ -33,18 +33,23 @@ include "include/header.php";
                    $result = $objU->getResult($query);
                    $num_rows = count($result);
 
-                if($num_rows > 0){
-                   $_SESSION['sess_msg_signup']='You are already registerd please login';  
+                if($num_rows >= 1){
+					echo "<script>
+					alert('You are already resigtered. Please login.');
+					window.location.href='http://localhost:27/ecom/signin';
+					</script>";
+                   //$_SESSION['sess_msg_signup']='You are already registerd please login';  
                     }
                 else{        
                     $colArray = array('password'=>$password,'name'=>$name,'email'=>$email,'fname'=>$fname,'lname'=>$lname,'status'=>1);
-                    $resultU = $objU->insertQuery($colArray,'user_data');
+					$resultU = $objU->insertQuery($colArray,'user_data');
                     $last_id = $resultU;
-                     $_SESSION['sess_success_msg_signup']='Thank you for registering!';  
-            
-                    if ($resultU!=true) {
+                     //$_SESSION['sess_success_msg_signup']='Thank you for registering!';  
+					 
+                    /* if ($resultU!=true) {
                         die();
 					}
+					*/
                     $_SESSION['fname'] = $fname;
                     $_SESSION['lname'] = $lname;
                     $_SESSION['user_email'] = $email;
@@ -62,7 +67,7 @@ include "include/header.php";
                         $email_to = $email;
 
                     
-                        $headers = 'From: '.$email_from."\r\n".
+                       /* $headers = 'From: '.$email_from."\r\n".
 
                         'MIME-Version: 1.0' . "\r\n".
 
@@ -70,22 +75,34 @@ include "include/header.php";
 
                         'Reply-To: '.$email_from."\r\n" .
 
-                        'X-Mailer: PHP/' . phpversion();
+						'X-Mailer: PHP/' . phpversion(); */
+						
+						$headers = "From: ".$email_from." \r\n";
+						$headers .= "MIME-Version: 1.0\r\n";
+						$headers .= "Content-type: text/html\r\n";
 
-                     	$mail= @mail($email_to, $email_subject, $email_message, $headers); 
+                     	$mail1= mail($email_to, $email_subject, $email_message, $headers); 
 
-                     	if ($mail == TRUE) {                
-                    echo "<META http-equiv='refresh' content='0;URL=my-account'>";
-                   // header('Location:index.php');
-                     } else {
-                    $_SESSION['msg'] = '
-                        <script>
-                            alert("You are not Registered");
-                        </script>';
-                    // header('Location:index.php');
-                  echo "<META http-equiv='refresh' content='0;URL=index'>";
+                     	if ($mail1) { 
+							echo "<script>
+							alert('Thank you for registering!');
+							window.location.href='index.php';
+							</script>";
+							              
+                    //echo "<META http-equiv='refresh' content='0;URL=my-account'>";
+                    //header('Location:index.php');
+					 }
+					 else
+					  {
+						 echo "No";
+                   /* $_SESSION['msg'] = '<script>
+							alert("You are not Registered");
+							window.location.href("http://localhost:27/ecom/signup");
+                        </script>'; */
+                     // header('Location:index.php');
+                 // echo "<META http-equiv='refresh' content='0;URL=index'>";
                  // header('Location:register.php?status=fail');
-                    }
+					 } 
                     }
                       }
 ?>
@@ -95,7 +112,7 @@ include "include/header.php";
 		<div class="row">
 			<div class="col-md-12 login-padding regis-sec">
 				<h3 class="login-sec-top">Create New Customer Account</h3>
-          <form action="" method="POST" id="signupform" role="form" class="custom-form">
+          <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" id="signupform" role="form" class="custom-form">
 				<div class="login-warp clearfix">
 					<div class="col-md-6 col-xs-12 login-sec">
 						<h3>Personal Information</h3>
@@ -122,7 +139,7 @@ include "include/header.php";
 								<input type="password" name="password_confirm" class="form-control" id="confirm_pass" placeholder="" required>
 							</div>
 							<div class="col-md-12 col-xs-12 create-m-b">
-						<button class="create-account" name="submit">Create an account</button>
+						<input type="submit" class="create-account" name="submit" value="Create an account">
 					
 					</div>
 					
