@@ -8,7 +8,6 @@ session_start();
 
 $user_email=$_SESSION['user_email'];
 //echo $user_email;
-
 ?>
 <section class="clearfix">
 	<div class="container-fluid">
