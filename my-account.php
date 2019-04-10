@@ -5,7 +5,7 @@ $keyword="All medicin available";
 $description="pharmacy Website";
 include "include/header.php";
       $userid = $_SESSION['user_id'] ;
-      $uid = session_id() ;
+      $uid = session_id();
          
 
           $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$uid.'"  ');
@@ -116,14 +116,17 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
     <tbody><tr>
     </tr>
     <tr>
-    <td width="30%">Fisrt Name</td>
+    <td width="30%">First Name</td>
     <td><div class="form-group"><input type="text" name="fname" id="" value="<?php echo $usrsdt[0]['fname'] ?>" placeholder="First Name" class="form-control"></div></td>
     </tr>
        <tr>
     <td width="30%">Last Name</td>
     <td><div class="form-group"><input type="text" name="lname" id="" value="<?php echo $usrsdt[0]['lname'] ?>" placeholder="Last Name" class="form-control"></div></td>
     </tr>
-    
+    <tr>
+    <td>Mobile No</td>
+    <td><div class="form-group"><input type="text" name="mobile" id="" value="<?php echo $userdetail[0]['mobile'] ?>" placeholder="Enter Mobile No" class="form-control"></div></td>
+    </tr>
  
     <tr>
     <td>Address Line1</td>
@@ -137,67 +140,30 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
     <td>Country</td>
     <td>
       <div class="form-group custom-select">
-      <?Php
-      $isd_code = ($_GET["isocode"]) <> ""  ? ($_GET["isocode"]) : "";
-      $arr = array();
-      
-      $sql = "SELECT `id`, `country`, `phonecode` "
-              . " FROM `countries` WHERE 1 AND phonecode LIKE :iso  ORDER BY country ASC";
-      try {
-          $stmt = $DB->prepare($sql);
-          $stmt->bindValue(":iso", $isd_code);
-          $stmt->execute();
-          $results = $stmt->fetchAll();
-          
-      } catch (Exception $ex) {
-          echo($ex->getMessage());
-      }
-      if (count($results) > 0 ) {
-          $arr = array(
-              "c_id" => $results[0]["id"],
-              "c_name" => $results[0]["country"],
-              "c_iso" => $results[0]["phonecode"]
-              
-          );
-      }
-      echo json_encode($arr);
-      
-      ?>
                       
-      <select name="country" id = "country" onchange= displayRecords(this.value)>
-                <option value="">Select Country</option>
-                //populate value using php
-                <?php
-                    $query = "SELECT * FROM countries";
-                    $mobcode = $objU->getResult($query);
-                    //loop
-                    foreach ($mobcode as $country){
-                ?>
-                        <option value="<?php echo $country["phonecode"];?>"><?php echo $country["country"];?></option>
-                <?php
-                    }
-                ?>
-            </select>                              
-                                   </select>
+
+                                   <?php
+          $query = "Select * from countries";
+          $queryCn = $objU->getResult($query);
+          ?>            
+      <select name="country" id="country-list" class="demoInputBox" onChange="getState(this.value);">
+<option value="" disabled selected>Select Country</option>
+<?php
+foreach($queryCn as $value) {
+?>
+<option value="<?php echo $value['id']; ?>"><?php echo $value['country']; ?></option>
+<?php
+}
+?>
+</select>
+
+
                                  
                     </div>
     </td>
     </tr>
-    <tr>
-    <?php 
-   
-	
-    ?>
-    <td>Mobile No</td>
-    <td><?php $country=$_POST['name1'];
-		
-		$msg="country=".$country;
-		$query="select phonecode from countries where country= '".$country."'";
-    $mobcode = $objU->getResult($query);
-    echo $mobcode[0]; ?>
-      <div class="form-group"><input type="text" name="mobile" id="" value="<?php echo $userdetail[0]['mobile'] ?>" placeholder="Enter Mobile No" class="form-control"></div></td>
-    </tr>
-    <tr>
+
+     <tr>
     <td>State</td>
     <td>
         
@@ -211,19 +177,10 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
       <div class="form-group custom-select">
 
                       
-                        <select name="state" class="form-control" id="state"> 
-
-                                          <!--  <?php                        
-                                            $querystate = "Select * from state where country_id='".$userdetail[0]['country']."'";
-                                            $querySt = $objU->getResult($querystate);
-                                              foreach ($querySt as $valuest) {
-                                            ?>  
-                                            <option value="<?php echo $valuest['state_id']; ?>" <?php if($userdetail[0]['state']==$valuest['state_id']) { ?>selected <?php } ?> ><? echo $valuest['state']; ;?></option>              
-                                            <?php }
-                                          ?>      
--->
-                                                                   
-                                   </select>
+                        <select name="state" class="form-control" id="state-list" onChange="getCity(this.value);"> 
+                        <option value="" selected disabled>Select State</option>
+                        </select>
+                                                      
                                   
                     </div>
 
@@ -233,18 +190,11 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
     <td>City</td>
     <td>     <div class="form-group custom-select">
                       
-       <input type="text" name="city" value="<?php echo $userdetail[0]['city'] ?>"  placeholder="Enter City" class="form-control" >  
-                        <select name="" class="form-control" id="city" style="display:none"> <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                 <?php                        
-                                            $querycity = "Select * from city where state_id='".$userdetail[0]['state']."'";
-                                            $queryCt = $objU->getResult($querycity);
-                                              foreach ($queryCt as $valuect) {
-                                            ?>  
-                                            <option value="<?php echo $valuect['city_id']; ?>" <?php if($userdetail[0]['city']==$valuect['city_id']) { ?>selected <?php } ?> ><? echo $valuect['city']; ;?></option>              
-                                            <?php }
-                                          ?>                                           
-                                   </select>
-             
+        
+                       
+                                   <select name="city" id="city-list" class="form-control">
+<option value="" selected disabled>Select City</option>
+</select>
                                    
                     </div></td>
     </tr>
@@ -329,49 +279,32 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
 <?php include "include/footer.php" ?>
 <script type="text/javascript">
 
-   var country=$("#finalcountry").val();
-   var select_state=$("#select_state").val();
-   //  alert(select_state);
-  
-     $.ajax({
-            type: "post",
-            url: "ajax/getstate.php",
-            data: {"country_id":country,"select_state":select_state},
-            success: function(result){
-             $("#state").html(result);
-           
-        }});
- $(document).on('change','#country',function(){
+function getState(val) {
+	$.ajax({
+	type: "POST",
+	url: "http://localhost:27/ecom/ajax/getstate.php",
+	data:'country_id='+val,
+	success: function(data){
+		$("#state-list").html(data);
+	//	getCity();
+	}
+	});
+}
 
-      var country=$('#country').val();
-     $.ajax({
-            type: "post",
-            url: "ajax/getstate.php",
-            data: {"country_id":country},
-            success: function(result){
-             $("#state").html(result);
-           
-        }});
+function getCity(val) {
+	$.ajax({
+	type: "POST",
+	url: "http://localhost:27/ecom/ajax/getcity.php",
+	data:'state_ids='+val,
+	success: function(data){
+		$("#city-list").html(data);
+	}
+	});
+}
 
+ 
 
-    });
-
-      $(document).on('change','#state',function(){
-
-      var state=$('#state').val();
-     $.ajax({
-            type: "post",
-            url: "ajax/getcity.php",
-            data: {"state_id":state},
-            success: function(result){
-             $("#city").html(result);
-           
-        }
-
-    });
-
-
-    });
+      
 
       $(document).on('submit','#password_form',function(){
 
@@ -420,49 +353,12 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
 
 
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript">
-            // fetching records
-            function displayRecords(country_iso_code) {
-                var country_iso_code = $.trim(country_iso_code);
-                console.log(country_iso_code);
-                if (country_iso_code.length > 0) {
-                    $.ajax({
-                        type: "GET",
-                        url: "my-account.php",
-                        data: "isocode=" + country_iso_code,
-                        cache: false,
-                        beforeSend: function() {
-                            $('.loader').html('<img src="loader.gif" alt="" width="24" height="24"" >');
-                        },
-                        success: function(html) {
-                            $("#results").html(html);
-                            // parsing the json results
-                            var parsedData = jQuery.parseJSON(html);
-                            // resetting the values
-                            $('#isd_code').val('');
-                            
-                            $('#cname').html('');
-                            // checking if there are results or not
-                            if (Object.keys(parsedData).length > 0) {
-                                $('#isd_code').val($.trim(parsedData.c_isd));
-
-                                $('#cname').html($.trim(parsedData.c_name));
-                            }
-                            $('.loader').html('');
-                            
-                        }
-                    });
-                } else {
-                    // setting the default values
-                    $('#isd_code').val('');
-                    $('#cflag').attr("src", "");
-                    $('#cname').html('');
-                }
-            }
-        </script>
-
-
-
 <?php  if(isset($_SESSION['sess_success_msg_signup'])){ unset($_SESSION['sess_success_msg_signup']);   }?>
+<script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+
+
+
+
+
+
+
