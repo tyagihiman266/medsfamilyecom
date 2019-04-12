@@ -62,7 +62,7 @@ include "include/header.php";
                         $email_message = "\n Welcome to Medsfamily.";
                         $email_subject = 'Medsfamily';
 
-                        $email_from = 'info@medsfamily.com';
+                        $email_from = 'tyagihiman26@gmail.com';
 
                         $email_to = $email;
 

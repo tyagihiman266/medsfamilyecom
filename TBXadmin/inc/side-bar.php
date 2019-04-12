@@ -22,6 +22,12 @@
 					<span>Dashboard</span> 
 				</a>
             </li>
+						<li  class="treeview <?php  if($side=='dashboard'){ ?> active <?php } ?>">
+				<a href="manufacturer.php">
+					<i class="fa fa-dashboard"></i>
+					<span>Manufacturer List</span> 
+				</a>
+            </li>
             <li class="treeview <?php  if($side=='banner'){ ?> active <?php } ?>">
               <a href="javascript:void(0)">
                 <i class="fa fa-edit"></i> <span>Manage Website Slider/Banner</span> 

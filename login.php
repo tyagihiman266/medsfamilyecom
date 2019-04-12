@@ -23,7 +23,7 @@ if($_REQUEST['submitlogin']=='yes')
 						//echo "yes";
 						echo "<script>
 						//alert('Logged In!');
-						window.location.href='http://localhost:27/ecom/index';
+						window.location.href='http://localhost/ecom/index';
 						</script>";
 						//header("Location:http://localhost:27/ecom/index);
 					}

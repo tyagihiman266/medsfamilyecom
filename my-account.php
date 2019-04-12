@@ -12,7 +12,7 @@ include "include/header.php";
           $countcart=count($cartcountpackage);
       //  print_r(session_id());
     
-         $usrsdt=$objU->getResult('select * from user_data where id="'.$userid.'"');
+         $usrsdt=$objU->getResult('select * from user_data where email="'.$userid.'"');
           $userdetail=$objU->getResult('select * from user_data,addressbook_data where user_data.id=addressbook_data.user_id and user_data.id="'.$userid.'"');
 
          if($_REQUEST['updateprofile']=='yes' && isset($_REQUEST['first']))
@@ -141,6 +141,25 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
     <td>
       <div class="form-group custom-select">
                       
+<<<<<<< HEAD
+                        <select name="country" class="form-control" id="country">
+                                          <?php   
+                                            $query = "Select * from countries";
+                                            $queryCn = $objU->getResult($query);
+                                              foreach ($queryCn as $value) {
+                                                   if(isset($_SESSION['sess_success_msg_signup'])){
+                                                       $matchcountry=231;
+                                                      
+                                                   }else{
+                                                       $matchcountry=$userdetail[0]['country'];
+                                                   }
+                                                
+                                            ?>  
+                                            <option value="<?php echo $value['id']; ?>" <?php if($matchcountry==$value['id']) { ?>selected <?php } ?> ><? echo $value['country']; ;?></option>              
+                                            <?php }
+                                          ?>                                   
+                                   </select>
+=======
 
                                    <?php
           $query = "Select * from countries";
@@ -158,6 +177,7 @@ foreach($queryCn as $value) {
 </select>
 
 
+>>>>>>> e29851d416c991da122c302160744c7406e99f59
                                  
                     </div>
     </td>
@@ -354,6 +374,8 @@ function getCity(val) {
 
 </script>
 <?php  if(isset($_SESSION['sess_success_msg_signup'])){ unset($_SESSION['sess_success_msg_signup']);   }?>
+<<<<<<< HEAD
+=======
 <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
 
 
@@ -362,3 +384,4 @@ function getCity(val) {
 
 
 
+>>>>>>> e29851d416c991da122c302160744c7406e99f59

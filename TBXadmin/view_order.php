@@ -1,103 +1,66 @@
 <?php
-require_once ("inc/main.php"); 
-
-  $side = "building"; 
-  $id=$_REQUEST['edit'];
-  $resultorder=$user->getResult("select * from order_data WHERE id='".$id."'");
-  $orderid=$resultorder[0]['order_no'];
-  $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "http://free.currencyconverterapi.com/api/v5/convert?q=".$resultorder[0]['shoping_currency']."&compact=y");
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-    $ip_data_in = curl_exec($ch); // string
-    curl_close($ch);
-
-    $ip_data = json_decode($ip_data_in,true);
-   
+require_once ("inc/main.php");
+$side = "building"; 
+$id=$_REQUEST['edit'];
+$resultorder=$user->getResult("select * from order_data WHERE id='".$id."'");
+$orderid=$resultorder[0]['order_no'];
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "http://free.currencyconverterapi.com/api/v5/convert?q=".$resultorder[0]['shoping_currency']."&compact=y");
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+$ip_data_in = curl_exec($ch); // string
+curl_close($ch);
+$ip_data = json_decode($ip_data_in,true);
 $currencyConverter= $ip_data[$resultorder[0]['shoping_currency']]['val'];
-  //print_r($result);
-
-  $statusid=$resultorder[0]['status'];
-   $uid=$resultorder[0]['user_id'];
-
-  $Orderstatus=$user->getResult("select * from order_status WHERE id='".$statusid."'");
-
-  $userdata=$user->getResult("select * from user_data  WHERE id='".$uid."'");
-
-   //print_r($userdata);
-
-  if(isset($_REQUEST['status']))
-     { 
-
-       $colArray = array(
-        'status' => $_REQUEST['status']
- 
-  );
-  $query = $user->updateQuery($colArray,'order_data',$_GET['edit']);
-  //$query= $objT->ActivateDeactiveRowProgarm('order_data',"status",$_GET['status'],$_GET['edit']);
-   header("location:view_order.php?edit=".$_GET['edit']);
+//print_r($result);
+$statusid=$resultorder[0]['status'];
+$uid=$resultorder[0]['user_id'];
+$Orderstatus=$user->getResult("select * from order_status WHERE id='".$statusid."'");
+$userdata=$user->getResult("select * from user_data  WHERE id='".$uid."'");
+//print_r($userdata);
+if(isset($_REQUEST['status']))
+    { 
+$colArray = array(
+'status' => $_REQUEST['status']
+                 );
+$query = $user->updateQuery($colArray,'order_data',$_GET['edit']);
+//$query= $objT->ActivateDeactiveRowProgarm('order_data',"status",$_GET['status'],$_GET['edit']);
+header("location:view_order.php?edit=".$_GET['edit']);
      }
-
-  if($_REQUEST['send']) { 
-
-      $to=$userdata[0]['email'];
+if($_REQUEST['send']) { 
+$to=$userdata[0]['email'];
 $subject="Order receipt from Tailormeup";
 $enq_message="Dear User,<br/>";
 $enq_message.="Thank you for your purchasing on Tailormeup<br/>";
 $enq_message.="Your order details are below:<br/><br/>";
-
-
-   $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border="1"> 
-
+$enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border="1"> 
       <thead> 
-
         <tr align="left">
                 <th width="600" height="40" align="left" valign="middle" class="details header">Product Name</th>
-    
         <th width="50" height="40" align="left" valign="middle" class="details header">Quantity</th>
                 <th width="200" height="40" align="left" valign="middle" class="details header">Unit Price</th>
                 <th width="200" height="40" align="left" valign="middle" class="details header">Total</th>
-                
                 </tr>
-                 
       </thead> 
-            
             <tbody>';
-      
-         
-         
-         $sql = "select * from product_order_data where order_no = '".$resultorder[0]['order_no']."'"; 
-         $row = $user->getResult($sql);
-          
-       $grand_total = '';
-         $subtotal='';
-         foreach ($row as $value) {
-
-        
-          $packagedetail=$user->getResult("SELECT * FROM `tbl_product_package` join tbl_product on tbl_product.id=tbl_product_package.product_id join product_varient on product_varient.id=tbl_product_package.varient_id join tbl_company on tbl_company.id=tbl_product_package.company_id where tbl_product_package.id='".$value['package_id']."'");
-
-
-
-
-
-
-
+ $sql = "select * from product_order_data where order_no = '".$resultorder[0]['order_no']."'"; 
+ $row = $user->getResult($sql);      
+ $grand_total = '';
+ $subtotal='';
+ foreach ($row as $value) {
+ $packagedetail=$user->getResult("SELECT * FROM `tbl_product_package` join tbl_product on tbl_product.id=tbl_product_package.product_id join product_varient on product_varient.id=tbl_product_package.varient_id join tbl_company on tbl_company.id=tbl_product_package.company_id where tbl_product_package.id='".$value['package_id']."'");
  $subtotal += $value['product_qty']*( $value['product_price']*$currencyConverter);
-
-
-
-
-          $product_price = $value['product_price']*$currencyConverter;
-      $product_id = $value['product_id'];
-      $result = $user->getResultById('tbl_product',$product_id);$file = $path.$filename;
+ $product_price = $value['product_price']*$currencyConverter;
+ $product_id = $value['product_id'];
+ $result = $user->getResultById('tbl_product',$product_id);$file = $path.$filename;
  $file_size = filesize($file);
  $handle = fopen($file, "r");
  $content = fread($handle, $file_size);
  fclose($handle);
  $content = chunk_split(base64_encode($content));
  $uid = md5(uniqid(time()));
- $header = "From: ".$from_name." <".$from_mail.">\r\n";
- $header .= "Reply-To: ".$replyto."\r\n";
+ $header = "From: ".$from_name." <".$email_from.">\r\n";
+ $header .= "Reply-To: ".$email_from."\r\n";
  $header .= "MIME-Version: 1.0\r\n";
  $header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"\r\n\r\n";
  $header .= "This is a multi-part message in MIME format.\r\n";

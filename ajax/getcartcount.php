@@ -4,7 +4,7 @@ include '../controls/Users.php';
 include '../medsfamily_function.php' ;
 $objU = new User();
 global $numcartpackage;
-if(isset($_SESSION['user_id'])){
+if(isset($_SESSION['user_email'])){
           $userid = $_SESSION['user_id'] ;
           $uid = session_id() ;
           $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$uid.'"  ');
