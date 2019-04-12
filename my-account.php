@@ -5,7 +5,7 @@ $keyword="All medicin available";
 $description="pharmacy Website";
 include "include/header.php";
       $userid = $_SESSION['user_id'] ;
-      $uid = session_id() ;
+      $uid = session_id();
          
 
           $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$uid.'"  ');
@@ -116,7 +116,7 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
     <tbody><tr>
     </tr>
     <tr>
-    <td width="30%">Fisrt Name</td>
+    <td width="30%">First Name</td>
     <td><div class="form-group"><input type="text" name="fname" id="" value="<?php echo $usrsdt[0]['fname'] ?>" placeholder="First Name" class="form-control"></div></td>
     </tr>
        <tr>
@@ -141,6 +141,7 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
     <td>
       <div class="form-group custom-select">
                       
+<<<<<<< HEAD
                         <select name="country" class="form-control" id="country">
                                           <?php   
                                             $query = "Select * from countries";
@@ -158,6 +159,25 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
                                             <?php }
                                           ?>                                   
                                    </select>
+=======
+
+                                   <?php
+          $query = "Select * from countries";
+          $queryCn = $objU->getResult($query);
+          ?>            
+      <select name="country" id="country-list" class="demoInputBox" onChange="getState(this.value);">
+<option value="" disabled selected>Select Country</option>
+<?php
+foreach($queryCn as $value) {
+?>
+<option value="<?php echo $value['id']; ?>"><?php echo $value['country']; ?></option>
+<?php
+}
+?>
+</select>
+
+
+>>>>>>> e29851d416c991da122c302160744c7406e99f59
                                  
                     </div>
     </td>
@@ -177,19 +197,10 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
       <div class="form-group custom-select">
 
                       
-                        <select name="state" class="form-control" id="state"> 
-
-                                          <!--  <?php                        
-                                            $querystate = "Select * from state where country_id='".$userdetail[0]['country']."'";
-                                            $querySt = $objU->getResult($querystate);
-                                              foreach ($querySt as $valuest) {
-                                            ?>  
-                                            <option value="<?php echo $valuest['state_id']; ?>" <?php if($userdetail[0]['state']==$valuest['state_id']) { ?>selected <?php } ?> ><? echo $valuest['state']; ;?></option>              
-                                            <?php }
-                                          ?>      
--->
-                                                                   
-                                   </select>
+                        <select name="state" class="form-control" id="state-list" onChange="getCity(this.value);"> 
+                        <option value="" selected disabled>Select State</option>
+                        </select>
+                                                      
                                   
                     </div>
 
@@ -199,18 +210,11 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
     <td>City</td>
     <td>     <div class="form-group custom-select">
                       
-       <input type="text" name="city" value="<?php echo $userdetail[0]['city'] ?>"  placeholder="Enter City" class="form-control" >  
-                        <select name="" class="form-control" id="city" style="display:none"> <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                 <?php                        
-                                            $querycity = "Select * from city where state_id='".$userdetail[0]['state']."'";
-                                            $queryCt = $objU->getResult($querycity);
-                                              foreach ($queryCt as $valuect) {
-                                            ?>  
-                                            <option value="<?php echo $valuect['city_id']; ?>" <?php if($userdetail[0]['city']==$valuect['city_id']) { ?>selected <?php } ?> ><? echo $valuect['city']; ;?></option>              
-                                            <?php }
-                                          ?>                                           
-                                   </select>
-             
+        
+                       
+                                   <select name="city" id="city-list" class="form-control">
+<option value="" selected disabled>Select City</option>
+</select>
                                    
                     </div></td>
     </tr>
@@ -295,49 +299,32 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
 <?php include "include/footer.php" ?>
 <script type="text/javascript">
 
-   var country=$("#finalcountry").val();
-   var select_state=$("#select_state").val();
-   //  alert(select_state);
-  
-     $.ajax({
-            type: "post",
-            url: "ajax/getstate.php",
-            data: {"country_id":country,"select_state":select_state},
-            success: function(result){
-             $("#state").html(result);
-           
-        }});
- $(document).on('change','#country',function(){
+function getState(val) {
+	$.ajax({
+	type: "POST",
+	url: "http://localhost:27/ecom/ajax/getstate.php",
+	data:'country_id='+val,
+	success: function(data){
+		$("#state-list").html(data);
+	//	getCity();
+	}
+	});
+}
 
-      var country=$('#country').val();
-     $.ajax({
-            type: "post",
-            url: "ajax/getstate.php",
-            data: {"country_id":country},
-            success: function(result){
-             $("#state").html(result);
-           
-        }});
+function getCity(val) {
+	$.ajax({
+	type: "POST",
+	url: "http://localhost:27/ecom/ajax/getcity.php",
+	data:'state_ids='+val,
+	success: function(data){
+		$("#city-list").html(data);
+	}
+	});
+}
 
+ 
 
-    });
-
-      $(document).on('change','#state',function(){
-
-      var state=$('#state').val();
-     $.ajax({
-            type: "post",
-            url: "ajax/getcity.php",
-            data: {"state_id":state},
-            success: function(result){
-             $("#city").html(result);
-           
-        }
-
-    });
-
-
-    });
+      
 
       $(document).on('submit','#password_form',function(){
 
@@ -387,3 +374,14 @@ echo "<META http-equiv='refresh' content='0;URL=logout'>";
 
 </script>
 <?php  if(isset($_SESSION['sess_success_msg_signup'])){ unset($_SESSION['sess_success_msg_signup']);   }?>
+<<<<<<< HEAD
+=======
+<script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+>>>>>>> e29851d416c991da122c302160744c7406e99f59

@@ -1,31 +1,17 @@
 <?php
-@session_start();
 include '../controls/Users.php';
-include '../medsfamily_function.php' ;
+include '../medsfamily_function.php';
 $objU = new User();
 
-   
-if($_REQUEST['state_id'])
-                {
-                
-
-                $query = "SELECT * FROM city where state_id ='".$_REQUEST['state_id']."' ";
-                $result = $objU->getResult($query);
-                $num_rows = count($result);
-
-              if($num_rows >0){ 
-                echo "<option value=''>Select City</option>";
-                foreach($result as $key => $val){
-                echo "<option value='".$val['city_id']."'>".$val['city']."</option>";
-
-                }  }else {
-                     echo "<option value=''>Select City</option>";
-                }
-
-
-
-
-              }
-
-              
-
+if (! empty($_POST['state_ids'])) {
+  $query = "SELECT * FROM city WHERE state_id = '" . $_POST['state_ids'] . "' order by city asc";
+  $results = $objU->getResult($query);
+  ?>
+<option value="" disabled selected>Select City</option>
+<?php
+  foreach ($results as $city) {
+      ?>
+<option value="<?php echo $city['city_id']; ?>"><?php echo $city['city']; ?></option>
+<?php
+  }
+}
