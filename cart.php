@@ -40,11 +40,11 @@ include "include/header.php";
             </tr>
              <?php 
          //    if(isset($_SESSION['user_id'])){
-  $userid = $_SESSION['user_id'] ;
+  $userid = $_SESSION['user_email'] ;
 	     //  }else{
   $uid = session_id() ;
 	    //  }
-          $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$uid.'"  ');
+          $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$userid.'"  ');
            $countcart=count($cartcountpackage);
 
            if($countcart >0) {

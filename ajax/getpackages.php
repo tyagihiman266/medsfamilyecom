@@ -177,7 +177,7 @@ foreach($productimages as $varientkey => $varientimg) {
                 ?>
                 
                 <?php
-                if(isset($_SESSION['user_id'])) {
+                if(isset($_SESSION['user_email'])) {
                 if($numcartpackage==0) {
         ?>
                           <div class="addcart_<?php echo $valpackage['id']; ?>"><?php if($valpackage['qty']>0)  {?><a href="javascript:void(0)" onclick="addcart(<?php echo $valpackage['id']; ?>,1)" class="tab-add-to-cart"><img src="images/shopping-cart.png"> <span>Add to Cart</span></a> <?php } else {  ?><img src="images/outofstock.jpeg" width="50" height="30">  <?php } ?> </div> <div class="cartloader_<?php echo $valpackage['id']; ?>" style="display: none;"><img src="images/loader.gif" height="100" width="100"></div><div class="removecart_<?php echo $valpackage['id']; ?>" style="display: none;"><a  href="javascript:void(0)" class="tab-add-to-cart" onclick="removecart(<?php echo $valpackage['id']; ?>,<?php echo $valpackage['product_id']; ?>,<?php echo $valpackage['company_id']; ?>);">Remove cart</a></div>

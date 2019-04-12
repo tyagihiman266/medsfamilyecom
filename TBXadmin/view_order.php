@@ -27,6 +27,27 @@ $query = $user->updateQuery($colArray,'order_data',$_GET['edit']);
 //$query= $objT->ActivateDeactiveRowProgarm('order_data',"status",$_GET['status'],$_GET['edit']);
 header("location:view_order.php?edit=".$_GET['edit']);
      }
+if(isset($_REQUEST['submitno'])){
+  $colArray = array(
+  $tracking_no = $_POST['tracking_no']
+  );
+  $abc = $user->queryinsert('UPDATE order_data SET tracking_no="'.$tracking_no.'" WHERE id="'.$_GET['edit'].'"');
+ 
+     $sms="<p style='text-align:center;color:green;'>Tracking Number Added Successfully.</p>";
+      header("refresh:2;url=view_order.php?edit=".$_GET['edit']);  
+ } 
+
+
+if(isset($_REQUEST['submiturl'])){
+  $colArray = array(
+    $tracking_url = $_POST['tracking_url']
+    );
+    $abc = $user->queryinsert('UPDATE order_data SET tracking_url="'.$tracking_url.'" WHERE id="'.$_GET['edit'].'"');
+ 
+     $sms="<p style='text-align:center;color:green;'>Tracking Url Added Successfully.</p>";
+      header("refresh:2;url=view_order.php?edit=".$_GET['edit']);
+  
+  }
 if($_REQUEST['send']) { 
 $to=$userdata[0]['email'];
 $subject="Order receipt from Tailormeup";
@@ -196,10 +217,9 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
       
       <!---order tracking code start-->
               <div class="col-xs-12">
-              <div class="box box-warning" style="width=200px">
-                <div class="box-header with-border">
-                            
-                </div><!-- /.box-header -->
+                  <div class="box box-warning" style="width=200px">
+                    <div class="box-header with-border">       
+                    </div><!-- /.box-header -->
                 <div class="box-body">
         <div class="form-horizontal">
         <div class="form-group">
@@ -212,7 +232,22 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
         
           <div style="margen-left:140px;">
                          
-                                                        <input type="submit" class="btn btn-success" name="add_tracking" id="submit" value="Submit">                                                       
+          <input type="submit" class="btn btn-success" name="submitno" id="submit" value="Submit">                                                       
+                                                     
+                      </div>
+        </form>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tracking Url</label>
+                <form action="" method="POST">
+              <input type="hidden" value="<?php echo $resultorder[0]['id'] ; ?>" name="id" />
+                    <div class="col-sm-8"><input type="text" value="<?php echo $resultorder[0]['tracking_url'] ; ?>" name="tracking_url" class="form-control" placeholder="Traking Url" />
+                </div>
+        
+          <div style="margen-left:140px;">
+                         
+          <input type="submit" class="btn btn-success" name="submiturl" id="submit" value="Submit">                                                       
                                                      
                       </div>
         </form>

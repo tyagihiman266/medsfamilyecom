@@ -12,8 +12,8 @@ if($_REQUEST['packageid'])
 
         $productsingle=$objU->getResult('select * from tbl_product_package where id="'.$_REQUEST['packageid'].'"');
         //print_r($productsingle);
-         if(isset($_SESSION['user_id'])){
-		  $uid = $_SESSION['user_id'] ;
+         if(isset($_SESSION['user_email'])){
+		  $uid = $_SESSION['user_email'] ;
 	       }else{
 		  $uid = session_id() ;
 	      }
