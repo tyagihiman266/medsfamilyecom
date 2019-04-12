@@ -189,7 +189,7 @@ $user_email=$_SESSION['user_email'];
 													<input type="password" name="password" class="form-control" id="" placeholder="" required="">
 												</div>
 												<?php
-												echo $user_email;
+												//echo $user_email;
 												if($user_email==true)
 												{
 													echo "hh";
