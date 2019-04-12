@@ -95,7 +95,7 @@ $cuserid = currentUser() ;
 				</div>
 				<div class="col-md-8 col-sm-7 col-xs-5 mp-0  topbar-r">
 					<ul>
-					<?php if($_SESSION['user_id']!='') { ?>
+					<?php if($_SESSION['user_email']!='') { ?>
 					
 						<li><a href="my-account">My account </a></li>
 						<li><a href="logout">Logout </a></li>

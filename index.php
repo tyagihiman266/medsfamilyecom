@@ -635,7 +635,21 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$val
 							<div class="col-md-6 col-sm-6 hidden-xs">
 								<div class="block-text rel zmin clearfix">
 									<div class="mark"><span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span></div>
-									<p>I always order from medsfamily, so easy to use the website, and so reasonable priced. I highly recommend this pharmacy for all your medications. Thank you for the service you provide. </p>
+									<p>I always or
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									der from medsfamily, so easy to use the website, and so reasonable priced. I highly recommend this pharmacy for all your medications. Thank you for the service you provide. </p>
 									<ins class="ab zmin sprite sprite-i-triangle block"></ins>
 									<a title="" href="#">	
 Sandra S.</a>
