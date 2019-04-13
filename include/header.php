@@ -164,6 +164,9 @@ $cuserid = currentUser() ;
 							<li><a href="#">Home</a></li>
 							<li><a href="about-us.php">About Us </a></li>
 							<li><a href="prescription-drugs.php">Prescription Drugs </a></li>
+							<li role="presentation">
+								<a href="#tabn1" aria-controls="tab1" role="tab" data-toggle="tab">REFILL MEDICATION</a>
+							</li>
 							<li><a href="how-to-order.php">How To Order </a></li>
 							<li><a href="faqs.php">faqs </a></li>
 						</ul>

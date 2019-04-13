@@ -48,6 +48,12 @@ if(isset($_REQUEST['submiturl'])){
       header("refresh:2;url=view_order.php?edit=".$_GET['edit']);
   
   }
+
+if($_REQUEST['mailcopy']){
+
+}
+
+
 if($_REQUEST['send']) { 
 $to=$userdata[0]['email'];
 $subject="Order receipt from Tailormeup";
@@ -139,7 +145,7 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
       </table>';
      
 
-  $email_from = 'info@medsfamily.com';
+  $email_from = 'tyagihiman26@examstube.in';
   $headers = 'From: '.$email_from."\r\n".
 
             'MIME-Version: 1.0' . "\r\n".
@@ -194,13 +200,14 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
        <div style="float:right;">
             
      <a href="view_order.php?edit=<?php echo $id ; ?>&send=email"><span class="btn btn-primary btn-small">Send Email</span></a>
-      <a href="view_order.php?edit=<?php echo $id ; ?>&status=3" class="btn btn-danger btn-small" onClick="return confirm('Are you sure want to Cancel')">Cancel</a>
+     <a href="view_order.php?edit=<?php echo $id ; ?>&status=3" class="btn btn-danger btn-small" onClick="return confirm('Are you sure want to Cancel')">Cancel</a>
+      <a href="view_order.php?edit=<?php echo $id ; ?>&status=3" class="btn btn-danger btn-small" onClick="return confirm('Are you sure want to Cancel')">Invoice</a>
     <a href="view_order.php?edit=<?php echo $id ; ?>&status=2" class="btn btn-warning btn-small" onClick="return confirm('Are you sure want to Hold')">Hold</a>
     <?php if($resultorder[0]['status'] =='5'){?>
-      <a href="view_order.php?edit=<?php echo $id ; ?>&status=4"><span class="btn btn-success btn-small">Invoice</span></a>
+      <a href="view_order.php?edit=<?php echo $id ; ?>&status=4"><span class="btn btn-success btn-small">Received by Customer</span></a>
     
     <?php }elseif($resultorder[0]['status'] =='4'){ ?>
-      <a target="_blank" href="invoice/invoice.php?id=<?php echo $id ; ?>"><span class="btn btn-success btn-small">Print</span></a>
+      <span class="btn btn-success btn-small">Order Completed</span>
     
     <?php }else{ ?>
       <a  href="view_order.php?edit=<?php echo $id ; ?>&status=5"><span class="btn btn-success btn-small">Ship</span></a>
@@ -222,6 +229,7 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
                     </div><!-- /.box-header -->
                 <div class="box-body">
         <div class="form-horizontal">
+        <?php if($resultorder[0]['status'] =='5'){?>
         <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Tracking No.</label>
         <form action="" method="POST">
@@ -237,7 +245,10 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
                       </div>
         </form>
                 </div>
-
+                
+      
+    
+     
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Tracking Url</label>
                 <form action="" method="POST">
@@ -252,6 +263,22 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
                       </div>
         </form>
                 </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Shippment Comment</label>
+                <form action="" method="POST">
+              <input type="hidden" value="<?php echo $resultorder[0]['id'] ; ?>" name="id" />
+                    <div class="col-sm-8"><input type="text" value="<?php echo $resultorder[0]['tracking_url'] ; ?>" name="tracking_url" class="form-control" placeholder="Traking Url" />
+                </div>
+        
+          <div style="margen-left:140px;">
+          <input type="checkbox" name="mailcopy" value="Bike"> Send a copy on mail<br>              
+          <input type="submit" class="btn btn-success" name="submiturl" id="submit" value="Add Shipment">                                                       
+                                                     
+                      </div>
+        </form>
+                </div>
+                
+                <?php }?>
         
        </div>
                 </div><!-- /.box-body -->

@@ -8,9 +8,23 @@ require_once ("inc/main.php");
   $objT = new User();
   $p1side = "view_product";
   $side = "view_product";
+<<<<<<< HEAD
 
 
 //Single Delete
+=======
+?>
+
+
+
+
+
+
+
+
+<?php
+//Singel Delete
+>>>>>>> d1132b9876da5574110806db4a550bbea570d46f
 if(isset($_GET['ids'])){
    $deleteid = $_GET['ids'];
     $sql = $objT->QueryDelete('tbl_product',$deleteid);
