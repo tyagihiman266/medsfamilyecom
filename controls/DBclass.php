@@ -25,6 +25,6 @@ $cookie_name = 'medsfamily';
 $cookie_time = (3600 * 24 * 30); /*  30 days */
 $_SESSION['currency_symbol']='$';
 
-  $baselink="http://localhost/ecom/";
+  $baselink="http://localhost:27/ecom/";
 set_time_limit(0);
 ?>

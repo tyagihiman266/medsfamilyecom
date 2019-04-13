@@ -605,75 +605,66 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$val
 			<div id="carousel-reviews" class="carousel slide" data-ride="carousel">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="carousel-inner">
+					<?php 
+						include '../controls/Users.php';
+						include '../medsfamily_function.php';
+						$objU = new User();
+						$query = "SELECT * FROM testimonials ORDER BY test_id DESC LIMIT 1";
+						$results = $objU->getResult($query);
+						foreach ($results as $data)
+						{
+							$rating=$data['test_rating'];
+						?>
 						<div class="item active">
-							<div class="col-md-6 col-sm-6">
+							<div class="col-md-12 col-sm-6">
 								<div class="block-text rel zmin clearfix">
-									<div class="mark"><span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span></div>
-									<p>There are a lot of things I like about Medsfamily. I've ordered from them for months. The website is easy to navigate, if there's a problem you get a personal phone call, the orders are delivered within the timeframe they promise and the order is always right. I plan to continue working with them for my prescription needs."</p>
+									<div class="mark"><span class="rating-input">
+									<?php
+										for($i=1;$i<=$rating;$i++)
+										{
+											//echo $i;
+											echo '<span data-value="'.$i.'" class="glyphicon glyphicon-star"></span>';
+										}
+									?>
+									</span></div>
+									<p><?php echo $data['test_msg'];?></p>
 									<ins class="ab zmin sprite sprite-i-triangle block"></ins>
-									<a title="" href="#">Margaret J.</a>
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6 hidden-xs">
-								<div class="block-text rel zmin clearfix">
-									<div class="mark"><span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span></div>
-									<p>I have been using this pharmacy for 2 months and they are great! I pay for medicine to help me live a more comfortable life. Other pharmacy's prices are so high I was unable to take these meds which lead to me being unable to leave my house at times or scared to eat. Thank you medsfamily for giving me my life back!</p>
-									<ins class="ab zmin sprite sprite-i-triangle block"></ins>
-									<a title="" href="#">Danielle C.</a>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="col-md-6 col-sm-6">
-								<div class="block-text rel zmin clearfix">
-									<div class="mark"><span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span></div>
-									<p>It is so easy to order my medications through medsfamily The re-fill process is even easier. I love that I can circumvent the high prices charged here. To get the mess I need. Thank you medsfamily to for providing this much needed service.</p>
-									<ins class="ab zmin sprite sprite-i-triangle block"></ins>
-									<a title="" href="#">Lori W.</a>
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6 hidden-xs">
-								<div class="block-text rel zmin clearfix">
-									<div class="mark"><span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span></div>
-									<p>I always or
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									der from medsfamily, so easy to use the website, and so reasonable priced. I highly recommend this pharmacy for all your medications. Thank you for the service you provide. </p>
-									<ins class="ab zmin sprite sprite-i-triangle block"></ins>
-									<a title="" href="#">	
-Sandra S.</a>
+									<a title="" href="#"><?php  echo $data['test_name'];?></a>
 								</div>
 							</div>
 						</div>
-						<div class="item">
-							<div class="col-md-6 col-sm-6">
+						<?php } 
+$query = "SELECT * FROM testimonials WHERE test_id != (SELECT MAX(test_id) FROM testimonials)";
+						$results = $objU->getResult($query);
+						foreach ($results as $data)
+						{
+							$rating=$data['test_rating'];
+?>
+						
+<div class="item">
+							<div class="col-md-12 col-sm-6">
 								<div class="block-text rel zmin clearfix">
-									<div class="mark"><span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span></div>
-									<p>I'm really glad I decided to use meds family for some of my prescription needs. Orders have been correct and quality has been as it should be, Spot On! Thanks for the service you provide.</p>
+									<div class="mark"><span class="rating-input">
+									<?php
+										for($i=1;$i<=$rating;$i++)
+										{
+											//echo $i;
+											echo '<span data-value="'.$i.'" class="glyphicon glyphicon-star"></span>';
+										}
+									?>
+									</span></div>
+									<p><?php echo $data['test_msg'];?></p>
 									<ins class="ab zmin sprite sprite-i-triangle block"></ins>
-									<a title="" href="#">David H. </a>
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6 hidden-xs">
-								<div class="block-text rel zmin clearfix">
-									<div class="mark"><span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star-empty"></span><span data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span></div>
-									<p>I have been buying products from medsfamily for almost years. I have always gotten high quality prescriptions and service. I have recommended this RX site to other people who need to fill their prescriptions but are unable to due to exorbitant US drug prices."</p>
-									<ins class="ab zmin sprite sprite-i-triangle block"></ins>
-									<a title="" href="#">Catherine S.</a>
+									<a title="" href="#"><?php  echo $data['test_name'];?></a>
 								</div>
 							</div>
 						</div>
+<?php } ?>
+
+
+
+						
+						
 					</div>
 					<a class="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
 						<span class="glyphicon glyphicon-chevron-left"></span>
@@ -859,4 +850,4 @@ Sandra S.</a>
 		</div>
 	</div>
 </section>
-<?php include "include/footer.php" ?>
+<?php include "include/footer.php" ?>	
