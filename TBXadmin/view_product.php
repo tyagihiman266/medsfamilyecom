@@ -6,57 +6,35 @@ require_once ("inc/main.php");
   include 'inc/head.php';
 
   $objT = new User();
-  $p1side = "view_product";
-  $side = "view_product";
-<<<<<<< HEAD
-
 
 //Single Delete
-=======
-?>
-
-
-
-
-
-
-
-
-<?php
-//Singel Delete
->>>>>>> d1132b9876da5574110806db4a550bbea570d46f
 if(isset($_GET['ids'])){
    $deleteid = $_GET['ids'];
     $sql = $objT->QueryDelete('tbl_product',$deleteid);
     $objT->QueryCommonDelete("delete from product_varient where product_id='".$deleteid."'");
     $objT->QueryCommonDelete("delete from related_product where product_id='".$deleteid."'");
            $row = $objT->getResult('select * from tbl_pro_img where p_id="'.$deleteid.'"');
-       foreach($row as $keydel => $valdel){
-
-              $path = "upload/product/big/" ;
-               $path2 = "upload/product/medium/" ;
-                $path3 = "upload/product/thumbs/" ;
-           if(file_exists($path.$valdel['image'])) {
-            unlink($path.$valdel['image']);
-            unlink($path2.$valdel['image']);
-            unlink($path3.$valdel['image']);
-          }
-
-          }
+       foreach($row as $keydel => $valdel)
+	   {
+              $path = "upload/product/big/";
+               $path2 = "upload/product/medium/";
+                $path3 = "upload/product/thumbs/";
+           if(file_exists($path.$valdel['image']))
+			    {
+					unlink($path.$valdel['image']);
+					unlink($path2.$valdel['image']);
+					unlink($path3.$valdel['image']);
+				}
+       }
 $objT->QueryCommonDelete("delete from tbl_pro_img where p_id='".$deleteid."'");
 $objT->QueryCommonDelete("delete from tbl_company where product_id ='".$deleteid."'");
 $objT->QueryCommonDelete("delete from tbl_product_package where product_id='".$deleteid."'");
-   
-
-             
-
    
    
 
   if($sql){
     $sms = "<p style='text-align:center;color:green;'>Product deleted successfully</p>"; 
     header("Location:view_product.php"); 
-  
   }
 
 }
@@ -73,7 +51,7 @@ if(isset($_POST['delete'])) {
     
         $sql = $objT->QueryDelete('tbl_product',$id);
     }
-     header("refresh:1;url=view_product");  // redirent after deleting
+     header("refresh:1;url=view_product");  // redirect after deleting
 }
 
 
@@ -108,9 +86,9 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
           <div class="row">
             <div class="col-xs-12">
               
-
+<?php //echo $_SERVER['PHP_SELF']; ?>
               <div class="box">
-        <form id="tab" name="form1" method="post" action="">
+        <form id="tab" name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <div class="box-header">
                   <h3 class="box-title">Manage Product</h3>
           <div style="float:right;">
@@ -218,7 +196,7 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
         
       </div><!-- /.content-wrapper -->
      <?php 
-      include"inc/footer.php";
+      include "inc/footer.php";
       ?>
       <div class="control-sidebar-bg"></div>
     </div>
