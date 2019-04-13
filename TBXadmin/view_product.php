@@ -9,6 +9,14 @@ require_once ("inc/main.php");
   $p1side = "view_product";
   $side = "view_product";
 ?>
+
+
+
+
+
+
+
+
 <?php
 //Singel Delete
 if(isset($_GET['ids'])){

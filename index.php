@@ -192,7 +192,7 @@ $user_email=$_SESSION['user_email'];
 												//echo $user_email;
 												if($user_email==true)
 												{
-													echo "hh";
+													echo "Already Logged In";
 												}
 												else
 												{
