@@ -8,9 +8,9 @@ require_once ("inc/main.php");
   $objT = new User();
   $p1side = "view_product";
   $side = "view_product";
-?>
-<?php
-//Singel Delete
+
+
+//Single Delete
 if(isset($_GET['ids'])){
    $deleteid = $_GET['ids'];
     $sql = $objT->QueryDelete('tbl_product',$deleteid);
@@ -53,22 +53,22 @@ $objT->QueryCommonDelete("delete from tbl_product_package where product_id='".$d
 if(isset($_POST['delete'])) {
     $id_array = $_POST['data']; // return array
     $id_count = count($_POST['data']); // count array
- 
+ //console.log($id_count);
     for($i=0; $i < $id_count; $i++) {
         $id = $id_array[$i];
     
         $sql = $objT->QueryDelete('tbl_product',$id);
     }
-     header("Location:view_product.php");  // redirent after deleting
+     header("refresh:1;url=view_product");  // redirent after deleting
 }
 
-?>
-<?php //Status active/deactive
+
+//Status active/deactive
 
 if($_GET['tag']=='ProgarmActivateDeactivate')
 {
- $query= $objT->updateStatus('tbl_product',"status",$_GET['active'],$_GET['id']);
-  header("Location: view_product.php"); 
+ $query= $objT->updateStatus('tbl_product','status',$_GET['active'],$_GET['id']);
+  header("Location:view_product.php"); 
 } 
 ?>
  
@@ -137,24 +137,24 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
           <?php
             $i=1;
             $j=0;    
-            $row = $objT->getResult('select * from tbl_product order by id desc');
+            $row = $objT->getResult("select * from tbl_product order by id desc");
             $count = count($row);
-            echo "Total No. of Productds - " .$count;
+            echo "Total No. of Productds - ".$count;
             $img=array();
             while($count > 0) { 
-        ?>
+          ?>
         <tr>
-        <td> <input type="checkbox" value="<?php echo $row['id']; ?>" name="data[]" id="data" title="Select All" /></td> 
+        <td> <input type="checkbox" value="<?php echo $row[$j]['id']; ?>" name="data[]" id="data" title="Select All" /></td> 
                         <td><?php echo $i; ?></td>
                         <td><?php echo $row[$j]['name']; ?></td>
-             <!--<td><?php if($row[$j]['stock_availablity'] == 1){
+             <!--<td><//?php if($row[$j]['stock_availablity'] == 1){
               echo  $stock = "In Stock";
              }else{
               echo  $stock = "Out of Stock";
              }
              ?></td> 
-             <td><?php echo $row[$j]['qty']; ?></td>
-             <td><?php echo $row[$j]['price']; ?></td>-->
+             <td><//?php echo $row[$j]['qty']; ?></td>
+             <td><//?php echo $row[$j]['price']; ?></td>-->
              <td><?php echo $row[$j]['sku_number']; ?></td>
           
                          <td>
@@ -181,10 +181,12 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
                       </tr>
              
                       
-                     <?php $i++;
+                     <?php
+                      $i++;
                      $j++;
                      $count--;
-           } ?>
+                      }
+                     ?>
                     </tbody>
                     <tfoot>
                       

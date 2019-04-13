@@ -687,7 +687,7 @@ $query = "SELECT * FROM testimonials WHERE test_id != (SELECT MAX(test_id) FROM 
 						<?php 
   
   
-										  $productsinglecattop=$objU->getResult('select * from tbl_product  order by rand() desc limit 0,50'); 
+										  $productsinglecattop=$objU->getResult('select * from tbl_product order by rand() desc limit 0,50'); 
                 foreach($productsinglecattop as $keyproduct => $valproduct)
                      {
                      	$rowcatproduct=$objU->getResult('select * from manage_category where id="'.$valproduct['cat_id'].'" ');
