@@ -253,3 +253,16 @@
 [05-Mar-2019 14:33:47 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/medsfamily/public_html/TBXadmin/include/User.php on line 143
 [05-Mar-2019 15:51:53 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/medsfamily/public_html/TBXadmin/include/User.php on line 143
 [05-Mar-2019 16:47:17 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/medsfamily/public_html/TBXadmin/include/User.php on line 143
+[15-Apr-2019 14:00:50 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[15-Apr-2019 14:01:25 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[15-Apr-2019 14:02:26 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[15-Apr-2019 14:02:35 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[15-Apr-2019 14:03:50 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[15-Apr-2019 15:01:10 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[15-Apr-2019 15:01:28 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[15-Apr-2019 15:07:33 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[15-Apr-2019 10:12:24 Etc/GMT] PHP Parse error:  syntax error, unexpected '$rowvarient' (T_VARIABLE), expecting ',' or ';' in /home/examstub/public_html/ecom/TBXadmin/manage_package.php on line 137
+[15-Apr-2019 10:12:33 Etc/GMT] PHP Parse error:  syntax error, unexpected '$rowvarient' (T_VARIABLE), expecting ',' or ';' in /home/examstub/public_html/ecom/TBXadmin/manage_package.php on line 137
+[15-Apr-2019 16:02:01 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[17-Apr-2019 11:02:26 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143
+[17-Apr-2019 11:04:57 Asia/Kolkata] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in /home/examstub/public_html/ecom/TBXadmin/include/User.php on line 143

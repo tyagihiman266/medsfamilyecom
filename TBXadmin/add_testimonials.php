@@ -22,7 +22,7 @@
     if($row1)
     {  
        echo '<script>alert("Testimonial is added successfully.");
-       window.location.href="http://localhost:27/ecom/TBXadmin/add_testimonials.php";
+       window.location.href="http://examstube.in/ecom/TBXadmin/add_testimonials.php";
        </script>';
        
      

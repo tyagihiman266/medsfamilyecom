@@ -6,7 +6,7 @@ $description="pharmacy Website";
 include "include/header.php";
 //test
 
-if($_REQUEST['submitlogin']=='yes') 
+if($_REQUEST['subsign']) 
                    {
 
 				   $email = $_POST['username'] ;  
@@ -22,17 +22,17 @@ if($_REQUEST['submitlogin']=='yes')
 					{	
 						//echo "yes";
 						echo "<script>
-						//alert('Logged In!');
-						window.location.href='http://localhost/ecom/index';
+						alert('Logged In!');
+						window.location.href='http://examstube.in/ecom/';
 						</script>";
-						//header("Location:http://localhost:27/ecom/index);
+						//header("Location:http://examstube.in/ecom/index);
 					}
 					else
 					{
 						// echo "No";
 						echo "<script>
 						alert('Your session is about to expire!');
-						window.location.href('http://localhost:27/ecom/signin');
+						window.location.href('http://examstube.in/ecom/login.php');
 						</script>"; 
 					}
 
@@ -41,7 +41,7 @@ if($_REQUEST['submitlogin']=='yes')
                    $_SESSION['fname'] = $row[0]['fname'];
                     $_SESSION['lname'] = $row[0]['lname'];
                     $_SESSION['user_email'] = $email;
-                    $_SESSION['user_id'] = $row[0]['id'];
+                    $_SESSION['user_email'] = $row[0]['id'];
                      echo "<META http-equiv='refresh' content='0;URL=my-account'>";
 
                    
@@ -82,7 +82,7 @@ if($_REQUEST['submitlogin']=='yes')
 								<label for="">Password <span class="color-red">*</span></label>
 								<input type="password" name="password" class="form-control" id="" placeholder="" required>
 							</div>
-							<input type="submit" class="sign-in" value="Sign In">
+							<input type="submit" name="subsign" class="sign-in" value="Sign In">
 							<button class="forget-password" data-toggle="modal" data-target="#main-model">forget your password?</button>
 							<p class="requre-f">*required fields</p>
 						</form>
@@ -90,7 +90,7 @@ if($_REQUEST['submitlogin']=='yes')
 					<div class="col-md-6 create-acc-sec">
 						<h3>New Customers</h3>
 						<p>Creating an account has many benefits check out faster, keep more than one address,trak address and more. </p>
-						<a href="signup" class="create-account">Create an account</a>
+						<a href="http://examstube.in/ecom/signup" class="create-account">Create an account</a>
 					</div>
 				</div>
 			</div>

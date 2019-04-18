@@ -5,19 +5,24 @@ require_once ("inc/main.php");
     include_once("include/User.php");
     include 'inc/head.php';
     $objT = new User();
-    $p1side = "view_product";
-  $side = "view_product";
    
  ?>
  <?php
 if(isset($_GET['ids'])){
    $deleteid = $_GET['ids'];
 
-  $sql = $objT->QueryDelete('tbl_product_package',$deleteid);
+   $row1 = $objT->getResultById('manage_category',$deleteid);
+
+    $path = "upload/category/" ;
+           if(file_exists($path.$row1['category_image'])) {
+            unlink($path.$row1['category_image']);
+          }
+  
+  $sql = $objT->QueryDelete('manage_category',$deleteid);
   
   if($sql){
-    $sms = "<p style='text-align:center;color:green;'>Package deleted successfully</p>"; 
-    header("refresh:1;url=manage_package?p_id=".$_REQUEST['p_id']);
+    $sms = "<p style='text-align:center;color:green;'>Category deleted successfully</p>"; 
+    header("refresh:1;url=manage_category");
   
   }
 
@@ -29,15 +34,19 @@ if(isset($_POST['delete'])) {
  
     for($i=0; $i < $id_count; $i++) {
         $id = $id_array[$i];
-         $row1 = $objT->getResultById('tbl_product_package',$id);
+         $row1 = $objT->getResultById('manage_category',$id);
 
-  
+    $path = "upload/category/" ;
+           if(file_exists($path.$row1['category_image'])) {
+            unlink($path.$row1['category_image']);
+          }
   
     
-        $sql = $objT->QueryDelete('tbl_product_package',$id);
+        $sql = $objT->QueryDelete('manage_category',$id);
     }
-    header("refresh:1;url=manage_package?p_id=".$_REQUEST['p_id']); 
+    header("refresh:1;url=manage_category"); 
 }
+
 ?>
 <?php 
 
@@ -57,11 +66,11 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Manage Package
+            Manufacturer
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Manage Package</li>
+            <li class="active">Users who leave cart</li>
           </ol>
     </section>
      <section class="content">
@@ -71,16 +80,13 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
 
               <div class="box">
         <form id="tab" name="form1" method="post" action="">
-          <input type="hidden" name="p_id" value="<?php echo $_REQUEST['p_id'];?>">
                 <div class="box-header">
                   <!--<a href="manage-customer.php"><span class="btn btn-primary btn-small">All</span></a>
                   <a href="manage-customer.php?status=1"><span class="btn btn-success btn-small">Active</span></a>
        <a href="manage-customer.php?status=0"><span class="btn btn-danger btn-small">Deactive</span></a>
       <a href="manage-customer.php?status=2"><span class="btn btn-warning btn-small">Blacklist</span></a> -->
           <div style="float:right;">
-          <a href="add_product_package?p_id=<?php echo $_REQUEST['p_id'] ?>"><span class="btn btn-success btn-small">Add Package</span></a>
-      
-          <input type="submit" name="delete" id="submit" onClick="return confirmdelete()" value="Delete Selected" class="btn btn-danger btn-small">
+          
           <!--<a href="import-export/customer-export.php"><span class="btn btn-info btn-small">Export</span></a> -->
           </div>
                 </div><!-- /.box-header -->
@@ -91,17 +97,14 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-            <th><input type="checkbox" id="check_all" value=""></th> 
+            
                         <th>S.No</th>
                       
-            <th>Company Name</th>
-            <th>Package Name</th>
-            <th>Per Pill Price</th>
-            <th>Price</th>
-             <th>Discount</th>
-            <th>Status</th>
+            <th>users</th>
+            <th></th>
+            <!-- <th>Status</th>
          
-            <th>Action</th>
+            <th>Action</th> -->
             
                       </tr>
                     </thead>
@@ -112,7 +115,7 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
           
           
             
-                 $row=$objT->getResult('select * from tbl_product_package where product_id="'.$_REQUEST['p_id'].'" order by id desc');
+                 $row=$objT->getResult('select * from cart order by id desc');
                
                 $count = count($row);
              
@@ -122,36 +125,18 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
          
                  ?>
                       <tr>
-        <td> <input type="checkbox" value="<?php echo $row[$j]['id']; ?>" name="data[]" id="data" title="Select All" /></td> 
+         
                         <td><?php echo $i; ?></td>
-                         <td><?php echo $row[$j]['company_name']; ?></td>
-
-
-                        <?php
-                        //echo 'select * from product_varient where id="'.$row[$j]['varient_id'].'"';
-                         $rowvarient=$objT->getResult('select * from product_varient where id="'.$row[$j]['varient_id'].'"');
-                     
+                        <?php $rowparent=$objT->getResult('select category_name from manage_category where parent_id="'.$row[$j]['parent_id'].'"');
+                       
 
                         ?>
                     
-             <td><?php echo $rowvarient[0]['varient']; ?> <?php echo $rowvarient[0]['varient_unit']; ?> ×  <?php echo $row[$j]['no_pills'] ; ?> <?php echo $rowvarient[0]['varient_formulation'] ; ?></td>
-             <td><?php echo $row[$j]['per_pill_price']; ?></td>
-              <td><?php echo $row[$j]['price']; ?></td>
-              <td><?php echo $row[$j]['discount']; ?></td>
+ <td><?php echo $row[$j]['user_temp_id']; ?></td>
+             <td><img src="../upload/category/<?php echo $row[$j]['category_image']; ?>" alt="" height="100" width="100"></td>
           
-             <td>
-             <?php if($row[$j]['status']==1){ ?>
-            <a href="manage_package?tag=ProgarmActivateDeactivate&active=0&id=<?php echo $row[$j]['id'];?>" onClick="return confirm('Are you sure to do this action.');" title="Activate/Deactivate Service"><span class="label label-success">Active</span></a>
-            <?php } elseif($row[$j]['status']==0) {?>
+             
             
-                       <a href="manage_package?tag=ProgarmActivateDeactivate&active=1&id=<?php echo $row[$j]['id'];?>"  onClick="return confirm('Are you sure to do this action.');" title="Activate/Deactivate Service">
-                        <span class="label label-danger">DeActive</span></a>
-            <?php }elseif($row[$j]['status']==2) {?>
-            
-                        <span class="label label-warning">Blacklist</span>
-            <?php } ?></td>
-                        
-            <td><a href="add_product_package?p_id=<?php echo $_REQUEST['p_id']; ?>&edit=<?php echo $row[$j]['id'];?>"><span class="btn btn-success btn-xs"><i class="fa fa-edit"></i>Edit</span></a><a href="/add_product_package?p_id=<?php echo $_REQUEST['p_id']; ?>&ids=<?php echo $row[$j]['id'];?>" class="btn btn-danger btn-xs" onClick="return confirm('Are you sure want to delete')">Delete</a></td>
             
                       </tr>
                      <?php 

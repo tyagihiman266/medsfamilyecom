@@ -111,7 +111,7 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$val
               }?>
               
   <img class="mySlides " src="<?php echo $url;?>" style="width:100%;height:200px"/>
-  <a href="salt_product/<?php  echo buildURL($valproduct['id']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm"><?php echo $valproduct['name']; ?></a>
+  <a href="salt_product/<?php  echo buildURL($valproduct['id']); ?>/<?php  echo buildURL($valproduct['salt_name']); ?>.htm"><?php echo $valproduct['salt_name']; ?></a>
                 
 								<p style="display:none">
 									 <?php  $productalltag=$objU->getResult('select * from product_tags where product_id="'.$valproduct['id'].'"');

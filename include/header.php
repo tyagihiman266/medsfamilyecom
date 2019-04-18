@@ -101,8 +101,8 @@ $cuserid = currentUser() ;
 						<li><a href="logout">Logout </a></li>
 					
 				<?php } else {?>
-                   <li><a href="signin">Sign In </a></li>
-						<li><a href="signup">Sign Up </a></li>
+                   <li><a href="http://examstube.in/ecom/login.php">Sign In </a></li>
+						<li><a href="http://examstube.in/ecom/signup">Sign Up </a></li>
 				<?php } ?>
 				</ul>
 				</div>

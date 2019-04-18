@@ -20,7 +20,7 @@ if($_REQUEST['submitlogin']=='yes')
                    $_SESSION['fname'] = $row[0]['fname'];
                     $_SESSION['lname'] = $row[0]['lname'];
                     $_SESSION['user_email'] = $email;
-                    $_SESSION['user_id'] = $row[0]['id'];
+                    $_SESSION['user_email'] = $row[0]['id'];
                      echo "<META http-equiv='refresh' content='0;URL=my-account'>";
 
                    

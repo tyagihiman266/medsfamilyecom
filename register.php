@@ -36,7 +36,7 @@ include "include/header.php";
                 if($num_rows >= 1){
 					echo "<script>
 					alert('You are already resigtered. Please login.');
-					window.location.href='http://localhost:27/ecom/signin';
+					window.location.href='http://examstube.in/ecom/signin';
 					</script>";
                    //$_SESSION['sess_msg_signup']='You are already registerd please login';  
                     }
@@ -62,7 +62,7 @@ include "include/header.php";
                         $email_message = "\n Welcome to Medsfamily.";
                         $email_subject = 'Medsfamily';
 
-                        $email_from = 'tyagihiman26@gmail.com';
+                        $email_from = 'tyagihiman26@examstube.in';
 
                         $email_to = $email;
 

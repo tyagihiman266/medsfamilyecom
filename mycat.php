@@ -4,7 +4,7 @@ $keyword="All medicin available";
 $description="pharmacy Website";
 include "include/header.php";
 //print_r($_REQUEST);
-$catname=buildReverseURL($_GET['cat_id']);
+$catname=($_GET['cat_id']);
  $rowcatproduct=$objU->getResult('select * from manage_category where category_name like "%'.$catname.'%" order by id desc');
 ?>
 <section class="clearfix bearcrumb-back">

@@ -1,7 +1,6 @@
 <?php
 @session_start();
-
+unset($_SESSION['user_email']);
 session_destroy();
-
-header('Location:index.php');
+header('Location:http://examstube.in/ecom/login.php');
  ?>

@@ -9,6 +9,64 @@ session_start();
 $user_email=$_SESSION['user_email'];
 //echo $user_email;
 ?>
+
+	<?php 
+
+//test
+
+if($_REQUEST['subsign']) 
+                   {
+
+				   $email = $_POST['username'] ;  
+				   $password=($_POST['password']); 
+                   $password = base64_encode($password); 
+					session_start();
+					$_SESSION['user_email']=$email;
+
+                   $query = "SELECT * FROM user_data where password ='".$password."' and  email ='".$email."' ";
+				   $row = $objU->getResult($query);
+				   $num_rows = count($row);
+					if($num_rows==1)
+					{	
+						//echo "yes";
+						echo "<script>
+						alert('Logged In!');
+						window.location.href='http://examstube.in/ecom/my-account.php';
+						</script>";
+						//header("Location:http://localhost:27/ecom/index);
+					}
+					else
+					{
+						// echo "No";
+						echo "<script>
+						alert('Your session is about to expire!');
+						window.location.href('http://examstube.in/ecom/login.php');
+						</script>"; 
+					}
+
+
+                  /* $status = $row[0]['status'];
+                   $_SESSION['fname'] = $row[0]['fname'];
+                    $_SESSION['lname'] = $row[0]['lname'];
+                    $_SESSION['user_email'] = $email;
+                    $_SESSION['user_email'] = $row[0]['id'];
+                     echo "<META http-equiv='refresh' content='0;URL=my-account'>";
+
+                   
+                    if($num_rows == 0){
+                         $_SESSION['sess_msg_login']='Invalid email ID or password';  
+                   
+                    }elseif($status == 0){
+                         $_SESSION['sess_msg_login']='Your account is not activated yet please cehck your mail.';  
+                
+                    }elseif($status == 3){
+                         $_SESSION['sess_msg_login']='Your account is block. Please connect to service provider.';  
+                   
+					} */
+					
+                    }
+                   
+?>
 <section class="clearfix">
 	<div class="container-fluid">
 		<div class="row">
@@ -175,34 +233,27 @@ $user_email=$_SESSION['user_email'];
 											If you have any questions regarding refills you can call 1-800-891-0844 or fill out our contact form here. </p>
 									</div>
 									<div class="col-md-12 mp-0 first-tab-h">
-										<div class="col-md-8 login-sec p-0">
-											<h3>Registered Customers</h3>
-											<p>If you have an account sign in with your email address</p>
-											<form action="" method="POST" role="form" class="custom-form">
-												<input type="hidden" name="submitlogin" value="yes">
-												<div class="form-group">
-													<label for="">Email <span class="color-red">*</span></label>
-													<input type="text" name="username" class="form-control" id="" placeholder="" required="">
-												</div>
-												<div class="form-group">
-													<label for="">Password <span class="color-red">*</span></label>
-													<input type="password" name="password" class="form-control" id="" placeholder="" required="">
-												</div>
-												<?php
-												//echo $user_email;
-												if($user_email==true)
-												{
-													echo "Already Logged In";
-												}
-												else
-												{
-												?>
-												<button type="submit" class="sign-in">sign in</button>
-												<?php } ?>
-												<button class="forget-password" data-toggle="modal" data-target="#main-model">forget your password?</button>
-												<p class="requre-f">*requred fields</p>
-											</form>
-										</div>
+										<div class="col-md-6 login-sec">
+					
+					
+						<h3>Registered Customers</h3>
+						<?php echo $_SESSION['sess_msg_login']; ?>
+						<p>If you have an account sign in with your email address</p>
+						<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" role="form" class="custom-form">
+							 <input type="hidden" name="submitlogin" value="yes">
+							<div class="form-group">
+								<label for="">Email <span class="color-red">*</span></label>
+								<input type="text" name="username" class="form-control" id="" placeholder="" required>
+							</div>
+							<div class="form-group">
+								<label for="">Password <span class="color-red">*</span></label>
+								<input type="password" name="password" class="form-control" id="" placeholder="" required>
+							</div>
+							<input type="submit" name="subsign" class="sign-in" value="Sign In">
+							<button class="forget-password" data-toggle="modal" data-target="#main-model">forget your password?</button>
+							<p class="requre-f">*required fields</p>
+						</form>
+					</div>
 									</div>
 								</div>
 							</div>
