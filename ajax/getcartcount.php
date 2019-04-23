@@ -9,9 +9,6 @@ if(isset($_SESSION['user_email'])){
           $uid = session_id() ;
           $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$userid.'"  ');
           $numcartpackage=count($cartcountpackage);
-          
-
-        
         ?>
         
     <a href="cart">

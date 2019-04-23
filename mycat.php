@@ -70,11 +70,14 @@ include("pagination.php");
 $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$valproduct['id'].'"');
 
 ?>
-<img src="images/product.jpg" class="img-responsive">
-<!--
-							<img src="TBXadmin/upload/product/big/<?php echo $productsingleimg[0]['image']; ?>" class="img-responsive"> -->
+<p style="color:black;font-size:16px;font-weight:38px;margin-top:6px;margin-left:6px"><?php echo $valproduct['name'] ?></p>
+<p style="color:green;font-weight:28px;margin-top:6px;margin-left:6px"><?php echo $valproduct['salt_name'] ?></p>
+<p style="font-weight:28px;margin-top:6px;margin-left:50%;" id = "hello">78% OFF</p>
+
+
+							<center><img src="TBXadmin/upload/product/big/<?php echo $productsingleimg[0]['image']; ?>" class="img-responsive"></center>
 							<div class="feature-cost text-center">
-								<p><?php echo $valproduct['name'] ?></p>
+								
 								<?php
 								$productsingleprice=$objU->getResult('select min(per_pill_price) as minprice from tbl_product_package where product_id="'.$valproduct['id'].'"');  ?>
 								<h3 style="display:none"><?php echo $_SESSION['currencySymbol']; ?><?php echo number_format($_SESSION['currencyConverter']*$productsingleprice[0]['minprice'],2); ?></h3>
@@ -108,7 +111,14 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$val
 
 
 
-
+<style>
+#hello {
+    padding:0px 0px 0px 0px;
+    background:red;
+    border: 0 1px 0 1px solid #000;
+	color:white;
+}  
+</style>
 
 
 

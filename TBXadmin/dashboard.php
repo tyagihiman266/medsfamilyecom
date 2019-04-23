@@ -11,6 +11,7 @@
 		$addTown = " and town='".$_REQUEST['town']."'";
 	}
 	$buildingTodayCount = count($user->getResult("select id from user_data"));
+	$items = count($user->getResult("select product_qty from product_order_data"));
 
 	$lightTodayCount = count($user->getResult("select id from order_data where order_date='".date('Y-m-d')."'"));
 	
@@ -64,8 +65,8 @@
 							<span class="info-box-icon bg-green"><i class="fa fa-area-chart"></i></span>
 
 							<div class="info-box-content">
-							  <span class="info-box-text">Today's Order</span>
-							  <span class="info-box-number"><?=$lightTodayCount;?></span>
+							  <span class="info-box-text">Item Ordered</span>
+							  <span class="info-box-number"><?=$items;?></span>
 							</div>
 							</div>
 					</a>
@@ -87,8 +88,218 @@
 					</a>
 				  <!-- /.info-box -->
 				</div>
-				<!-- /.col -->
 
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-blue"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Subtotal</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+				<!-- /.col -->
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-blue"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Shipping Charges</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-aqua"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Discounts</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+				<!-- /.col -->
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-green"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Any Coupon Used</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-orange"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Products in Cart</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-green"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Invoice Raised <br> and their values</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-orange"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Total Order<br> Received</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-aqua"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Total <br>Dispatched Order</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-blue"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Total <br>Dispatched Values</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-orange"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Refunded Amount</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-blue"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Maximum Order<br> Value</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-green"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Minimum Order <br> Value</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-aqua"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Coupons Used</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
+								<!-- /.col -->
+								<div class="col-md-3 col-sm-6 col-xs-12">
+					<a href="#">
+						<div class="info-box">
+							<span class="info-box-icon bg-aqua"><i class="fa fa-area-chart"></i></span>
+
+							<div class="info-box-content">
+							  <span class="info-box-text">Coupons Values</span>
+							  <span class="info-box-number"><?=$lightTodayCounts;?></span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+					</a>
+				  <!-- /.info-box -->
+				</div>
 				<!-- fix for small devices only -->
 				<div class="clearfix visible-sm-block"></div>
 
