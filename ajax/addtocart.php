@@ -5,23 +5,25 @@ include '../medsfamily_function.php' ;
 $objU = new User();
 
    
-if($_REQUEST['packageid'])
+if($_POST['packageid1'])
                 {
 
-
-
-        $productsingle=$objU->getResult('select * from tbl_product_package where id="'.$_REQUEST['packageid'].'"');
-        //print_r($productsingle);
-         if(isset($_SESSION['user_email'])){
-		  $uid = $_SESSION['user_email'] ;
-	       }else{
+        $productsingle=$objU->getResult('select * from tbl_product_package where id="'.$_POST['packageid1'].'"');
+         if(isset($_SESSION['user_id'])){
+		  $uid = $_SESSION['user_id'] ;
+		   }
+		   else
+		   {
 		  $uid = session_id() ;
 	      }
 
 
-           
-			$row = $objU->QueryInsert("insert into  cart set  user_temp_id='".$uid."',package_id='".$_REQUEST['packageid']."',price='".$productsingle[0]['price']."',quantity='".$_REQUEST['qty']."'") ;
-             
-              }
+		  $pkg_id=$_POST['packageid1'];
+		  $price=$productsingle[0]['price'];
+		  $qty=$_POST['qty1'];
+			$row = $objU->QueryInsert("insert into cart(user_temp_id,package_id,price,quantity,userTempStatus) values('$uid','$pkg_id','$price','$qty',0)");
+            
+			  }
+			
 
 ?>

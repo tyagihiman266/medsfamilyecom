@@ -129,7 +129,7 @@ $cuserid = currentUser() ;
 								<i class="fa fa-phone" aria-hidden="true"></i> <?php $productsinglecattop=$objU->getResult('select * from phone_number');
 								foreach($productsinglecattop as $keyproduct => $valproduct)
 								{
-									echo	$valproduct['number']. "<br/>";	
+									echo $valproduct['number']. "<br/>";	
 								}
 								
 								?>

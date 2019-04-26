@@ -7,17 +7,18 @@ include "include/header.php";
 //test
 
 if($_REQUEST['subsign']) 
-                   {
+                   {	
 
 				   $email = $_POST['username'] ;  
 				   $password=($_POST['password']); 
                    $password = base64_encode($password); 
-					session_start();
-					$_SESSION['user_email']=$email;
+				   @session_start();
+				   $_SESSION['user_email']=$email;
 
                    $query = "SELECT * FROM user_data where password ='".$password."' and  email ='".$email."' ";
 				   $row = $objU->getResult($query);
 				   $num_rows = count($row);
+				   $_SESSION['user_id'] = $row[0]['id'];
 					if($num_rows==1)
 					{	
 						//echo "yes";
