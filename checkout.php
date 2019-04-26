@@ -8,7 +8,7 @@ include "include/header.php";
     $userid = $_SESSION['user_id'] ;
      $uid = session_id() ;
      
-            $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$uid.'"  ');
+            $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$userid.'"  ');
           $countcart=count($cartcountpackage);
       // print_r($cartcountpackage);
            if($countcart==0) {
@@ -92,13 +92,14 @@ include "include/header.php";
 										</div>
 										<div class="form-group custom-select">
 											<label for="">country <span class="color-red">*</span></label>
+											
 											  <select name="billing_country" class="form-control" id="country">
                                           <?php   
                                             $query = "Select * from countries";
                                             $queryCn = $objU->getResult($query);
                                               foreach ($queryCn as $value) {
                                             ?>  
-                                            <option value="<?php echo $value['id']; ?>" <?php if($resultorder[0]['billing_country']==$value['id']) { ?>selected <?php } ?> ><? echo $value['country']; ;?></option>              
+                                            <option value="<?php echo $value['id'];?>" <?php if($resultorder[0]['billing_country']==$value['id']) { ?>selected <?php } ?> ><?php echo $value['country'];?></option>              
                                             <?php }
                                           ?>                                   
                                    </select>
@@ -515,7 +516,7 @@ function addorder(){
         }
 
         if(billfname=='' || billlname=='' || billlemail=='' || billladdress1=='' || country=='' ||  state=='' || city=='' || postcode==''  || mobile=='' ) {
-           //  alert('Please Fill all require filed');
+           //  alert('Please Fill all required fields.');
           return false;
 
 

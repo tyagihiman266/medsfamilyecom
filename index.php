@@ -8,9 +8,7 @@ session_start();
 
 $user_email=$_SESSION['user_email'];
 //echo $user_email;
-?>
 
-	<?php 
 
 //test
 
@@ -31,7 +29,7 @@ if($_REQUEST['subsign'])
 						//echo "yes";
 						echo "<script>
 						alert('Logged In!');
-						window.location.href='http://examstube.in/ecom/my-account.php';
+						window.location.href='http://localhost:27/ecom/my-account.php';
 						</script>";
 						//header("Location:http://localhost:27/ecom/index);
 					}
@@ -40,7 +38,7 @@ if($_REQUEST['subsign'])
 						// echo "No";
 						echo "<script>
 						alert('Your session is about to expire!');
-						window.location.href('http://examstube.in/ecom/login.php');
+						window.location.href('http://localhost:27/ecom/login.php');
 						</script>"; 
 					}
 

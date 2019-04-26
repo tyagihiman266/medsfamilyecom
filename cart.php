@@ -31,7 +31,7 @@ include "include/header.php";
 					<table class="table">
         
             <tr>
-                <th>Prodcut</th>
+                <th>Product</th>
                 <th>package</th>
                 <th>per price</th>
                   <th>price</th>
@@ -40,11 +40,11 @@ include "include/header.php";
             </tr>
              <?php 
          //    if(isset($_SESSION['user_id'])){
-  $userid = $_SESSION['user_email'] ;
+  $userid = $_SESSION['user_id'] ;
 	     //  }else{
   $uid = session_id() ;
 	    //  }
-          $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$userid.'"  ');
+          $cartcountpackage=$objU->getResult('select * from cart where user_temp_id="'.$userid.'"');
            $countcart=count($cartcountpackage);
 
            if($countcart >0) {
