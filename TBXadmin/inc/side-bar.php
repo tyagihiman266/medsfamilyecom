@@ -113,7 +113,7 @@
             </li>
 
 			<li  class="treeview <?php  if($side=='add_product_image'){ ?> active <?php } ?>">
-				<a href="add_product_image">
+				<a href="add_product_image.php">
 					<i class="fa fa-dashboard"></i>
 					<span>Add Product Image</span> 
 

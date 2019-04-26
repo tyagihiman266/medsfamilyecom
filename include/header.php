@@ -167,6 +167,7 @@ $cuserid = currentUser() ;
 							<li role="presentation">
 								<a href="#tabn1" aria-controls="tab1" role="tab" data-toggle="tab">REFILL MEDICATION</a>
 							</li>
+							<li><a href="coupon.php">Coupons </a></li>
 							<li><a href="how-to-order.php">How To Order </a></li>
 							<li><a href="faqs.php">faqs </a></li>
 						</ul>

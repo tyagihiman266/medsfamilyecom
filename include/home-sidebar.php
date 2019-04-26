@@ -20,7 +20,7 @@
                           ?>
 
 							<li>
-								<a href="cat/<?php  echo buildURL($valcat['category_name']); ?>.htm"><div><?php echo $valcat['category_name'] ?></div></a>
+								<a href="cat/<?php  echo ($valcat['category_name']); ?>.htm"><div><?php echo $valcat['category_name'] ?></div></a>
 								
 							</li> 
 						<?php } ?>

@@ -46,11 +46,46 @@ if(isset($_REQUEST['submiturl'])){
  
      $sms="<p style='text-align:center;color:green;'>Tracking Url Added Successfully.</p>";
       header("refresh:2;url=view_order.php?edit=".$_GET['edit']);
-  
+      
   }
 
-if($_REQUEST['mailcopy']){
+  if(isset($_REQUEST['submitshipmentcoment'])){
+    $colArray = array(
+      $shipment_comment = $_POST['shipment_comment']
+      );
+      $abc = $user->queryinsert('UPDATE order_data SET shipment_comment="'.$shipment_comment.'" WHERE id="'.$_GET['edit'].'"');
+   
+       $sms="<p style='text-align:center;color:green;'>Shipment Comment Added Successfully.</p>";
+        header("refresh:2;url=view_order.php?edit=".$_GET['edit']);
+        
+    }
 
+
+if(isset($_POST['mailcopy'])){
+    $sql = "select * from order_data where id = '".$_GET['edit']."'"; 
+ $row = $user->getResult($sql);
+    $ship_comment = $row[0]['shipment_comment'];
+    $track_url = $row[0]['tracking_url'];
+    $track_no = $row[0]['tracking_no'];
+  $to = 'tyagihiman26@gmail.com';
+  $enq_message = "shipment comment is".$ship_comment."Tracking Url is".$track_url."Tracking No. is".$track_no;
+//  $subject = "Shipment detail of"..
+
+$email_from = 'tyagihiman26@examstube.in';
+$headers = 'From: '.$email_from."\r\n".
+
+        'MIME-Version: 1.0' . "\r\n".
+
+        'Content-type: text/html; charset=iso-8859-1' . "\r\n".
+
+        'Reply-To: '.$email_from."\r\n" .
+
+        'X-Mailer: PHP/' . phpversion();
+
+
+
+
+      $mail= @mail($to, $subject, $enq_message, $headers);
 }
 
 
@@ -267,12 +302,12 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
                   <label for="inputEmail3" class="col-sm-2 control-label">Shippment Comment</label>
                 <form action="" method="POST">
               <input type="hidden" value="<?php echo $resultorder[0]['id'] ; ?>" name="id" />
-                    <div class="col-sm-8"><input type="text" value="<?php echo $resultorder[0]['tracking_url'] ; ?>" name="tracking_url" class="form-control" placeholder="Traking Url" />
+                    <div class="col-sm-8"><input type="text" value="<?php echo $resultorder[0]['shipment_comment'] ; ?>" name="shipment_comment" class="form-control" placeholder="Shipment Comment" />
                 </div>
         
           <div style="margen-left:140px;">
           <input type="checkbox" name="mailcopy" value="Bike"> Send a copy on mail<br>              
-          <input type="submit" class="btn btn-success" name="submiturl" id="submit" value="Add Shipment">                                                       
+          <input type="submit" class="btn btn-success" name="submitshipmentcoment" id="submit" value="Add Shipment">                                                       
                                                      
                       </div>
         </form>

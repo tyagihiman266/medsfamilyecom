@@ -72,74 +72,45 @@ include("pagination.php");
 						 $rowcatproduct=$objU->getResult('select * from manage_category where id="'.$valproduct['cat_id'].'"');
                 ?>
 					<div class="col-md-3 p-0-7">
-						<a href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm"><div class="feature-wrap">
+						<a href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm">
+						<div class="feature-wrap" style="border-right:1px solid grey;border-bottom:2px solid grey">
 							<?php 
 $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$valproduct['id'].'"');
 
-?>
-<img src="images/product.jpg" class="img-responsive">
-							<!--<img src="TBXadmin/upload/product/big/<?php echo $productsingleimg[0]['image']; ?>" class="img-responsive"> -->
+?><!-- product name -->
+<strong><a style="color:black;font-size:13px;font-weight:38px;margin-top:6px;margin-left:6px" href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm"><?php echo $valproduct['name'] ?></a></strong><br>
+<!-- salt name -->
+
+<a style="color:green;font-weight:28px;margin-top:6px;margin-left:6px" href="salt_product/<?php  echo buildURL($valproduct['id']); ?>/<?php  echo ($valproduct['salt_name']); ?>.htm"><?php echo $valproduct['salt_name']; ?></a>
+<!-- discount -->
+<p style="font-weight:28px;margin-top:6px;margin-left:50%;" id = "hello">78% OFF</p>
+
+
+							<center><img src="TBXadmin/upload/product/big/<?php echo $productsingleimg[0]['image']; ?>" class="img-responsive"></center>
 							<div class="feature-cost text-center">
-								<p><?php echo $valproduct['name'] ?></p>
-								<?php
+							
+							<p><?php 
+		  $productvariant=$objU->getResult('select id as v_id,varient,varient_unit from product_varient where product_id="'.$valproduct['id'].'"  ');
+                $vary="";
+                foreach($productvariant as $keyproductvary => $varyproduct)
+                     {
+                         $urls="product/".buildURL($rowcatproduct[0]['category_name'])."/".buildURL($valproduct['name']).".htm?v_id=".$varyproduct['v_id'];
+                            $vary.="<a href='$urls' class='urls' style="."font-size:12px".">  ".$varyproduct['varient']." ".$varyproduct['varient_unit']."</a> | ";      
+                     }
+                    // echo $urls;
+                       echo rtrim($vary," | ");
+            					
+								?></p>
+										 
+										 </div>
+										 <div style="margin-top:20px"></div>
+										 <p style="font-size:17px;color:black;margin-left:6px;background:	#FADA5E;width:20%;float:left" id = "rate">$50 </p>
+										 <i class="fas fa-shopping-cart fa-2x" style="margin-left:30px"></i><br>
+										 <div style="margin-top:22px"></div>
+							<p style="font-size:12px;color:orange;margin-left:6px">Manufacturer`s Suggested Retail Price $1.25</p>
+								<div class="feature-cost text-center">
 
-								 if(avgratingProduct($valproduct['id'])==0) { ?>
-								 
-								<span>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-							<?php } else if(avgratingProduct($valproduct['id'])==1) {  ?>
-								<span>
-									<i class="fa fa-star ratingon" class="ratingon" aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-							<?php } else if(avgratingProduct($valproduct['id'])==2) {  ?>
-	                            <span>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-							<?php } else if(avgratingProduct($valproduct['id'])==3) {  ?>
-	                            <span>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-							<?php } else if(avgratingProduct($valproduct['id'])==4) {  ?>
-	                            <span>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-								<?php } else if(avgratingProduct($valproduct['id'])==5) {  ?>
-	                            <span>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-								</span>
-							<?php } ?>
-
-								<?php  
-                                   
-								$productsingleprice=$objU->getResult('select min(per_pill_price) as minprice from tbl_product_package where product_id="'.$valproduct['id'].'"'); 
-                                 
-								 ?>
-								<h3><?php echo $_SESSION['currencySymbol']; ?><?php echo number_format($_SESSION['currencyConverter']*$productsingleprice[0]['minprice'],2); ?></h3>
+							
 								<a href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm" class="tab-add-to-cart"><img src="images/shopping-cart.png"> Add to Cart</a>
 							</div>
 						</div></a>
@@ -169,7 +140,21 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$val
 
 
 
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<style>
+#hello {
+    padding:5px 5px 5px 17px;
+    background:red;
+    border: 0 1px 0 1px solid #000;
+	color:white;
+} 
+#rate {
+    padding:7px 5px 7px 6px;
+    
+    border: 0 1px 0 1px solid #000;
+	color:white;
+} 
+</style>
 
 
 

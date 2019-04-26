@@ -55,32 +55,7 @@ $productsingle=$objU->getResult('select * from tbl_product where name like "'.$p
 					<?php //include "include/shop-by-brand.php" ?>
 				</div>
 				<div class="col-md-12 p-0">
-				<?php /*<div class="col-md-6 product-single">
-					<div class="product-img-wrap">
-						<?php 
-$productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$productsingle[0]['id'].'"');
-
-?>
-						
-						<img src="TBXadmin/upload/product/big/<?php echo $productsingleimg[0]['image']; ?>" class="img-responsive" > 
-						<img src="images/product.jpg" class="img-responsive">
-						</div>
-					</div>-->
-					
-						
-						<!--
-						<div class="select-medication">
-							<div class="form-group">
-								<label>*Select Medication</label>
-								<select class="form-control">
-									<option>--plese select--</option>
-									<option>option1</option>
-									<option>option2</option>
-									<option>option3</option>
-									<option>option4</option>
-								</select>
-							</div>
-						</div> */ ?>
+				
 						<div class="product-descp">
 					<h3><?php echo ucfirst($productsingle[0]['name']); ?></h3>
 					 <?php  $productalltag=$objU->getResult('select * from related_product,tbl_product,manage_category
@@ -149,9 +124,10 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$pro
 						<?php } ?>
 							
 						</ul>
+
 						<!-- Tab panes -->
 						<div class="tab-content">
-
+						
 <!--                         <?php  foreach($productsinglevarient as $varientkey => $varientval) { ?>
 
 							<div role="tabpanel" class="tab-pane active" id="varient<?php echo $varientval['id']; ?>">
@@ -295,96 +271,16 @@ foreach($productimages as $varientkey => $varientimg) {
 						</div><!-- panel-group -->
 					</div><!-- container -->
 				</div>
-				<div class="col-md-12 p-0 clearfix">
-					<div class="sbb text-light-green">
-						<h3>Related Products</h3>
-					</div>
-					<div class="col-md-12 p-0">
-                         <?php 
-						  $productsinglecat=$objU->getResult('select * from tbl_product join related_product  on related_product.related_product_id=tbl_product.id'); 
-                foreach($productsinglecat as $keyproduct => $valproduct)
-                     {
-                     	$rowcatproduct=$objU->getResult('select * from manage_category where id="'.$valproduct['cat_id'].'" ');
-                ?>
-						<div class="col-md-3 col-sm-4 p-0-7">
-							<a href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm">		<div class="feature-wrap">
-								<?php 
-$productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$valproduct['id'].'"');
 
-?>
-								<img src="images/product.jpg" class="img-responsive">
-								<div class="feature-cost text-center">
-									<p><?php echo $valproduct['name'] ?></p>
-								<?php
+				<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Testimonial</a></li>
+  <li><a data-toggle="tab" href="#menu1">Related Products</a></li>
+  <!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li> -->
+</ul>
 
-								 if(avgratingProduct($valproduct['id'])==0) { ?>
-								 
-								<span>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-							<?php } else if(avgratingProduct($valproduct['id'])==1) {  ?>
-								<span>
-									<i class="fa fa-star ratingon" class="ratingon" aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-							<?php } else if(avgratingProduct($valproduct['id'])==2) {  ?>
-	                            <span>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-							<?php } else if(avgratingProduct($valproduct['id'])==3) {  ?>
-	                            <span>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-							<?php } else if(avgratingProduct($valproduct['id'])==4) {  ?>
-	                            <span>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
-								</span>
-								<?php } else if(avgratingProduct($valproduct['id'])==5) {  ?>
-	                            <span>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
-								</span>
-							<?php } ?>
-<?php  
-                                   
-								$productsingleprice=$objU->getResult('select min(per_pill_price) as minprice from tbl_product_package where product_id="'.$valproduct['id'].'"'); 
-                                 
-								 ?>
-									<h3><?php echo $_SESSION['currencySymbol']; ?><?php echo number_format($_SESSION['currencyConverter']*$productsingleprice[0]['minprice'],2); ?></h3>
-									
-								</div>
-								</div></a>
-						</div>
-
-					<?php } ?>
-					
-					
-					
-					</div>
-				</div>
-				<div class="col-md-12 p-0 clearfix">
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+	<div class="col-md-12 p-0 clearfix">
 				<div class="sbb text-light-green">
 						<h3>Customer Review</h3>
 					</div>	
@@ -477,7 +373,111 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$val
 					
 					
 				</div>
-			</div>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+	<div class="col-md-12 p-0 clearfix">
+					<div class="sbb text-light-green">
+						<h3>Related Products</h3>
+					</div>
+					<div class="col-md-12 p-0">
+                         <?php 
+						  $productsinglecat=$objU->getResult('select * from tbl_product join related_product  on related_product.related_product_id=tbl_product.id'); 
+                foreach($productsinglecat as $keyproduct => $valproduct)
+                     {
+                     	$rowcatproduct=$objU->getResult('select * from manage_category where id="'.$valproduct['cat_id'].'" ');
+                ?>
+						<div class="col-md-3 col-sm-4 p-0-7">
+							<a href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm">		<div class="feature-wrap">
+								<?php 
+$productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$valproduct['id'].'"');
+
+?>
+								<img src="images/product.jpg" class="img-responsive">
+								<div class="feature-cost text-center">
+									<p><?php echo $valproduct['name'] ?></p>
+								<?php
+
+								 if(avgratingProduct($valproduct['id'])==0) { ?>
+								 
+								<span>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+								</span>
+							<?php } else if(avgratingProduct($valproduct['id'])==1) {  ?>
+								<span>
+									<i class="fa fa-star ratingon" class="ratingon" aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+								</span>
+							<?php } else if(avgratingProduct($valproduct['id'])==2) {  ?>
+	                            <span>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+								</span>
+							<?php } else if(avgratingProduct($valproduct['id'])==3) {  ?>
+	                            <span>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+								</span>
+							<?php } else if(avgratingProduct($valproduct['id'])==4) {  ?>
+	                            <span>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingoff"  aria-hidden="true"></i>
+								</span>
+								<?php } else if(avgratingProduct($valproduct['id'])==5) {  ?>
+	                            <span>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+									<i class="fa fa-star ratingon"  aria-hidden="true"></i>
+								</span>
+							<?php } ?>
+<?php  
+                                   
+								$productsingleprice=$objU->getResult('select min(per_pill_price) as minprice from tbl_product_package where product_id="'.$valproduct['id'].'"'); 
+                                 
+								 ?>
+									<h3><?php echo $_SESSION['currencySymbol']; ?><?php echo number_format($_SESSION['currencyConverter']*$productsingleprice[0]['minprice'],2); ?></h3>
+									
+								</div>
+								</div></a>
+						</div>
+
+					<?php } ?>
+					
+					
+					
+					</div>
+				</div>
+				
+  </div>
+  <!-- <div id="menu2" class="tab-pane fade">
+    <h3>Menu 2</h3>
+    <p>Some content in menu 2.</p>
+  </div> -->
+</div>
+
+
+			
+				
+				
+				
+		
 		</div>
 	</div>
 </section>

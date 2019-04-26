@@ -45,7 +45,7 @@ $catname=($_GET['cat_id']);
                 $searchdt=explode('?search=',$actual_link);
                   $wheresearch='';
                  if(count($searchdt) >0){
-                 	$wheresearch.=" and salt_name like '".$searchdt[1]."%'";
+                 	$wheresearch.=" and name like '".$searchdt[1]."%'";
                  }
  $pcount=$objU->getResult('select id from tbl_product where cat_id="'.$rowcatproduct[0]['id'].'" '.$wheresearch.' group by salt_name');
                 $reccnt=count($pcount);
@@ -61,27 +61,55 @@ include("pagination.php");
 }
                 $productsinglecat=$objU->getResult('select * from tbl_product where cat_id="'.$rowcatproduct[0]['id'].'" '.$wheresearch.' group by salt_name limit '.$start.', '.$limit.''); 
                 if($reccnt > 0) {
+									
                 foreach($productsinglecat as $keyproduct => $valproduct)
                      {
                 ?>
-					<div class="col-md-3 p-0-7">
-						<a href="salt/<?php echo $_REQUEST['cat_id']; ?>/<?php  echo buildURL($valproduct['name']); ?>.htm"><div class="feature-wrap">
+								
+					<div class="col-md-3 p-0-7"><hr>
+						<a href="salt/<?php echo $_REQUEST['cat_id']; ?>/<?php  echo buildURL($valproduct['name']); ?>.htm">
+						<div class="feature-wrap" style="border-right:1px solid grey;border-bottom:2px solid grey">
 							<?php 
-$productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$valproduct['id'].'"');
-
+$productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$valproduct['id'].'"');							 
 ?>
-<p style="color:black;font-size:16px;font-weight:38px;margin-top:6px;margin-left:6px"><?php echo $valproduct['name'] ?></p>
-<p style="color:green;font-weight:28px;margin-top:6px;margin-left:6px"><?php echo $valproduct['salt_name'] ?></p>
+<!-- product name -->
+
+<strong><a style="color:black;font-size:13px;font-weight:38px;margin-top:6px;margin-left:6px" href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm"><?php echo $valproduct['name'] ?></a></strong><br>
+<!-- salt name -->
+
+<a style="color:green;font-weight:28px;margin-top:6px;margin-left:6px" href="salt_product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo ($valproduct['salt_name']); ?>.htm"><?php echo $valproduct['salt_name']; ?></a>
+<!-- discount -->
 <p style="font-weight:28px;margin-top:6px;margin-left:50%;" id = "hello">78% OFF</p>
 
 
 							<center><img src="TBXadmin/upload/product/big/<?php echo $productsingleimg[0]['image']; ?>" class="img-responsive"></center>
 							<div class="feature-cost text-center">
-								
+							
+							<p><?php 
+		  $productvariant=$objU->getResult('select id as v_id,varient,varient_unit from product_varient where product_id="'.$valproduct['id'].'"  ');
+                $vary="";
+                foreach($productvariant as $keyproductvary => $varyproduct)
+                     {
+                         $urls="product/".buildURL($rowcatproduct[0]['category_name'])."/".buildURL($valproduct['name']).".htm?v_id=".$varyproduct['v_id'];
+                            $vary.="<a href='$urls' class='urls' style="."font-size:12px".">  ".$varyproduct['varient']." ".$varyproduct['varient_unit']."</a> | ";      
+                     }
+                    // echo $urls;
+                       echo rtrim($vary," | ");
+            					
+								?></p>
+										 
+										 </div>
+										 <div style="margin-top:20px"></div>
+										 <p style="font-size:17px;color:black;margin-left:6px;background:	#FADA5E;width:20%;float:left" id = "rate">$50 </p>
+										 <i class="fas fa-shopping-cart fa-2x" style="margin-left:30px"></i><br>
+										 <div style="margin-top:22px"></div>
+							<p style="font-size:12px;color:orange;margin-left:6px">Manufacturer`s Suggested Retail Price $1.25</p>
+							<div class="feature-cost text-center">
+						
 								<?php
 								$productsingleprice=$objU->getResult('select min(per_pill_price) as minprice from tbl_product_package where product_id="'.$valproduct['id'].'"');  ?>
 								<h3 style="display:none"><?php echo $_SESSION['currencySymbol']; ?><?php echo number_format($_SESSION['currencyConverter']*$productsingleprice[0]['minprice'],2); ?></h3>
-								<a href="salt/<?php echo $_REQUEST['cat_id']; ?>/<?php  echo buildURL($valproduct['salt_name']); ?>.htm" class="tab-add-to-cart">View Details</a>
+								<a style="color:black;font-size:13px;font-weight:38px;margin-top:6px;margin-left:6px" href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm" class="tab-add-to-cart" >View Details</a>
 							</div>
 						</div></a>
 					</div>
@@ -110,14 +138,20 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$val
 
 
 
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <style>
 #hello {
-    padding:0px 0px 0px 0px;
+    padding:5px 5px 5px 17px;
     background:red;
     border: 0 1px 0 1px solid #000;
 	color:white;
-}  
+} 
+#rate {
+    padding:7px 5px 7px 6px;
+    
+    border: 0 1px 0 1px solid #000;
+	color:white;
+} 
 </style>
 
 

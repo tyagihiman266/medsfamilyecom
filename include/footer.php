@@ -38,9 +38,12 @@
 								<div class="footer-sec">
 									<h3>CONNECT US</h3>
 									<hr class="link-btm">
-									<p><img src="images/location.png"> xxxxxxxxxx xxxxxxxx</p>
+									<p><img src="images/location.png">203 Woodland Road,<br>
+									<span style="margin-left:40px"> Hinckley, United kingdom</span> <br>
+									<span style="margin-left:40px">	NE101JG</span></p>
 									<p><img src="images/call.png"> 1-800-891-0844</p>
-									<p><img src="images/email.png"> tyagihiman26@examstube.in</p>
+									<p><img src="images/email.png"> orders@completemedonline</p>
+									<p><Span>Timing:- 9:30-6:00 PM EST</p>
 									<div class="toll-fax">
 										<h3>Toll: 1-800-891-0844</h3>
 									</div>
