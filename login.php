@@ -22,11 +22,11 @@ if($_REQUEST['subsign'])
 					if($num_rows==1)
 					{	
 						//echo "yes";
-						echo "<script>
-						alert('Logged In!');
+						 echo "<script>
+						
 						window.location.href='http://localhost:27/ecom/';
-						</script>";
-						//header("Location:http://examstube.in/ecom/index);
+						</script>"; 
+						//header('Location:http://localhost:27/ecom/');
 					}
                     else
 					{

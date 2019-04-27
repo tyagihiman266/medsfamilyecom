@@ -136,12 +136,19 @@ $cuserid = currentUser() ;
 							</div>
 						</div>
 						
+						<?php if($_SESSION['user_email']!='') {?>
 						<div class="col-md-2 col-sm-2 col-xs-3 mp-0">
 							<div class="cart text-light-green" id="cartcount">
 								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 								<h3>0</h3>
 							</div>
 						</div>
+						<?php } 
+						else
+						{
+							echo "";
+						}
+						?>
 					</div>
 				</div>
 			</div>
