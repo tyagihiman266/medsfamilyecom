@@ -32,11 +32,11 @@ include "include/header.php";
         
             <tr>
                 <th>Product</th>
-                <th>package</th>
-                <th>per price</th>
-                  <th>price</th>
-                <th>qty</th>
-                <th>subtotal</th>
+                <th>Package</th>
+                <th>Per Price</th>
+                  <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
             </tr>
              <?php 
          //    if(isset($_SESSION['user_id'])){
@@ -139,7 +139,7 @@ include "include/header.php";
 				<div class="table-responsive summery-wrap">
 				<table class="table">
 					<tr>
-						<td colspan="2" class="border-none summ"><b>Summery</b></td>
+						<td colspan="2" class="border-none summ"><b>Summary</b></td>
 						
 					</tr>
 					<tr>
