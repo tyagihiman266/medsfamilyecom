@@ -120,7 +120,14 @@
 					
 				</a>
             </li>
+				<li  class="treeview <?php  if($side=='add_product_icon'){ ?> active <?php } ?>">
+				<a href="add_product_icon.php">
+					<i class="fa fa-dashboard"></i>
+					<span>Add Product Icon</span> 
 
+					
+				</a>
+            </li>
 			<li  class="treeview <?php  if($side=='add_product_packaging_image'){ ?> active <?php } ?>">
 				<a href="add_product_packaging_image">
 					<i class="fa fa-dashboard"></i>

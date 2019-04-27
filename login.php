@@ -7,11 +7,7 @@ include "include/header.php";
 //test
 
 if($_REQUEST['subsign']) 
-<<<<<<< HEAD
-                   {    
-=======
                    {	
->>>>>>> 593f3b1f1644d33379874f8ad447e910e2dd61aa
 
                    $email = $_POST['username'] ;  
                    $password=($_POST['password']); 
