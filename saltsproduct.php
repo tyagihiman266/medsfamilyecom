@@ -70,7 +70,7 @@ include("pagination.php");
                 ?>
 					<div class="col-md-3 p-0-7">
 						<a href="salt/<?php echo $_REQUEST['cat_id']; ?>/<?php  echo buildURL($valproduct['name']); ?>.htm">
-						<div class="feature-wrap"  style="border-right:1px solid grey;border-bottom:2px solid grey;height:350px"">
+						<div class="feature-wrap"  style="border-right:1px solid grey;border-bottom:2px solid grey;height:350px">
 							<?php 
 $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$valproduct['id'].'"');
 
