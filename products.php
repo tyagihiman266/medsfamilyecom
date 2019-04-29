@@ -156,7 +156,7 @@ $productsingle=$objU->getResult('select * from tbl_product where name like "'.$p
 												<td>$<?php echo $valpackage['per_pill_price']; ?> </td>
 												<td>$<?php echo $valpackage['price']; ?></td>
 												<td><?php echo $discountmout=number_format(($valpackage['price']*$valpackage['discount'])/100,2); ?></td>
-												<td>+<?php echo $valpackage['OTC/RX']; ?></td>
+												<td><?php echo $valpackage['OTC/RX']; ?></td>
 												<td><a href="javascript:void(0)" onclick="addcart(<?php echo $valpackage['id']; ?>)" class="tab-add-to-cart"><img src="images/shopping-cart.png"><span> Add to Cart</span></a></td>
 											</tr>
 

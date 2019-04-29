@@ -138,7 +138,7 @@ foreach($productimages as $varientkey => $varientimg) {
         					<td><?php echo $curr.$valpackage['per_pill_price']; ?> </td>
         					<td><?php echo $curr.$valpackage['price']; ?></td>
         					<td><?php echo $curr.$valpackage['discount']; ?></td>
-        					<td>+<?php echo $curr.$valpackage['bonus']; ?></td>
+        					<td><?php echo $valpackage['bonus']; ?></td>
         				
   
               <!--  <td><?php echo $varientval['varient']; ?> <?php echo $varientval['varient_unit']; ?> x <?php echo $valpackage['no_pills']; ?> pills</td>

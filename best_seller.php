@@ -73,17 +73,19 @@ include("pagination.php");
                 ?>
 					<div class="col-md-3 p-0-7">
 						<a href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm">
-						<div class="feature-wrap" style="border-right:1px solid grey;border-bottom:2px solid grey">
+						<div class="feature-wrap" style="border-right:1px solid grey;border-bottom:2px solid grey;height:350px">
 							<?php 
 $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$valproduct['id'].'"');
 
 ?><!-- product name -->
+<?php
+								$productsingleprice=$objU->getResult('select *  from tbl_product_package where product_id="'.$valproduct['id'].'"');  ?>
 <strong><a style="color:black;font-size:13px;font-weight:38px;margin-top:6px;margin-left:6px" href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm"><?php echo $valproduct['name'] ?></a></strong><br>
 <!-- salt name -->
 
 <a style="color:green;font-weight:28px;margin-top:6px;margin-left:6px" href="salt_product/<?php  echo buildURL($valproduct['id']); ?>/<?php  echo ($valproduct['salt_name']); ?>.htm"><?php echo $valproduct['salt_name']; ?></a>
 <!-- discount -->
-<p style="font-weight:28px;margin-top:6px;margin-left:50%;" id = "hello">78% OFF</p>
+<p style="font-weight:28px;margin-top:6px;margin-left:50%;" id = "hello"><?php echo $productsingleprice[0]['discount']; ?> OFF</p>
 
 
 							<center><img src="TBXadmin/upload/product/big/<?php echo $productsingleimg[0]['image']; ?>" class="img-responsive"></center>
@@ -103,15 +105,24 @@ $productsingleimg=$objU->getResult('select * from tbl_pro_img where p_id="'.$val
 								?></p>
 										 
 										 </div>
+										 <?php 
+										 $a = $productsingleprice[0]['price'];
+										 $b = $productsingleprice[0]['discount'];
+										 
+										 $c = ($a*$b)/100;
+										 
+										 $d = $a-$c;
+										 
+										 ?>
 										 <div style="margin-top:20px"></div>
-										 <p style="font-size:17px;color:black;margin-left:6px;background:	#FADA5E;width:20%;float:left" id = "rate">$50 </p>
+										 <p style="font-size:17px;color:black;margin-left:6px;background:	#FADA5E;width:35%;float:left" id = "rate">$<?php echo number_format((float)$d, 2, '.', '');?> </p>
 										 <i class="fas fa-shopping-cart fa-2x" style="margin-left:30px"></i><br>
 										 <div style="margin-top:22px"></div>
-							<p style="font-size:12px;color:orange;margin-left:6px">Manufacturer`s Suggested Retail Price $1.25</p>
+							<p style="font-size:12px;color:orange;margin-left:6px">Manufacturer`s Suggested Retail Price $<?php echo $productsingleprice[0]['price'];?></p>
 								<div class="feature-cost text-center">
 
 							
-								<a href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm" class="tab-add-to-cart"><img src="images/shopping-cart.png"> Add to Cart</a>
+								<a href="product/<?php  echo buildURL($rowcatproduct[0]['category_name']); ?>/<?php  echo buildURL($valproduct['name']); ?>.htm" class="tab-add-to-cart"><img src="images/shopping-cart.png"> View Details</a>
 							</div>
 						</div></a>
 					</div>
