@@ -215,4 +215,3 @@ foreach($productimages as $varientkey => $varientimg) {
 		});
         </script>
         <?php } ?>
-       
