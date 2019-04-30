@@ -93,10 +93,8 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
                   <h3 class="box-title">Manage Product</h3>
           <div style="float:right;">
 
-            <a href="product_import"><span class="btn btn-success btn-small">Import Product</span></a>
-            <a href="import_brand"><span class="btn btn-success btn-small">Import Product Brand</span></a>
-            <a href="import_product_varient"><span class="btn btn-success btn-small">Import Product Varient</span></a>
-            <a href="import_package"><span class="btn btn-success btn-small">Import Product Package</span></a>
+            <a href="export.php"><span class="btn btn-success btn-small">Export Product</span></a>
+            
 
           	<a href="add_product"><span class="btn btn-success btn-small">Add Product</span></a>
           <input type="submit" name="delete" id="submit" onClick="return confirmdelete()" value="Delete Selected" class="btn btn-danger btn-small">
@@ -131,7 +129,7 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
             $j=0;    
             $row = $objT->getResult("select * from tbl_product order by id desc");
             $count = count($row);
-            echo "Total No. of Productds - ".$count;
+            echo "Total No. of Products - ".$count;
             $img=array();
             while($count > 0) { 
           ?>

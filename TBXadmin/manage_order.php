@@ -141,7 +141,8 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
                         <span class="label label-success">Processing</span>
             <?php } ?></td>
                         <td><?php echo date('d M, Y',strtotime($row[$j]['order_date'])); ?></td>
-            <td><a href="view_order?edit=<?php echo $row[$j]['id'];?>"><span class="btn btn-success btn-xs"><i class="fa fa-eye"></i>View Order</span></a><a href="manage_order?ids=<?php echo $row[$j]['id'];?>" class="btn btn-danger btn-xs" onClick="return confirm('Are you sure want to delete')">Delete</a></td>
+            <td><a href="view_order?edit=<?php echo $row[$j]['id'];?>"><span class="btn btn-success btn-xs"><i class="fa fa-eye"></i>View Order</span></a><a href="manage_order?ids=<?php echo $row[$j]['id'];?>" class="btn btn-danger btn-xs" onClick="return confirm('Are you sure want to delete')">Delete</a> <a href="re_order?edit=<?php echo $row[$j]['order_no'];?>" class="btn btn-danger btn-small">Reorder</a> </td>
+            
             
                       </tr>
                      <?php 

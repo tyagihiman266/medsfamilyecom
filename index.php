@@ -1,3 +1,5 @@
+
+
 <?php 
 include "include/header.php";
 session_start();
@@ -11,6 +13,17 @@ $user_email=$_SESSION['user_email'];
 
 
 //test
+
+if(isset($_SESSION['user_id'])){
+	$user_id = $_SESSION['user_id'] ;
+	 }else{
+	$user_id = session_id() ;
+	}
+$query1 = "SELECT * FROM order_data where user_id='".$user_id."' order by id desc";
+$result1 = $objU->getResult($query1);
+
+
+$row1 = count($result1);
 
 if($_REQUEST['subsign']) 
                    {
@@ -65,6 +78,84 @@ if($_REQUEST['subsign'])
                     }
                    
 ?>
+<?php if($_SESSION['user_email']!='') { ?>
+					
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
+<div id="myModal" class="modal" >
+    <div class="modal-dialog" >
+        <div class="modal-content" style="font-size:15px;">
+            <div class="modal-header" style="background:steelblue;color:white">
+                <button type="button" class="close" data-dismiss="modal" >&times;</button>
+				<?php foreach ($result1 as $value) {
+					$user_name=$value['billing_fname'];
+				}?>
+                <h4 class="modal-title">Welcome <?php echo $user_name;?></h4>
+            </div>
+            <div class="modal-body">
+				<p>Here is your last 5 order Summery</p>
+                <div class="row">
+										<div class="col-sm-12">
+											<table id="example" class="table table-striped table-bordered dataTable no-footer" style="width:100%" role="grid" aria-describedby="example_info">
+												<thead>
+													<tr role="row" style="background:steelblue;color:white">
+														<th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Order Date: activate to sort column descending" style="width: 159px;">Order Date</th>
+														<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Order No: activate to sort column ascending" style="width: 138px;">Order No</th>
+														<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Total Amount: activate to sort column ascending" style="width: 181px;">Total Amount</th>
+														<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 102px;">Status</th>
+														<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Option: activate to sort column ascending" style="width: 169px;">Option</th>
+													</tr>
+												</thead>
+												<tbody>
+                                                   
+ 								<?php
+ 								
+ 								$currencydata=array("USD_INR"=>"₹","USD_EUR"=>"€","USD_USD"=>"$","USD_GBP"=>"£" );
+ 								$cuurencysymbol= $currencydata[$result1[0]['shoping_currency']];
+        					if($row1>0) {
+           					 $total_price = '';
+            			foreach ($result1 as $value) {
+               $order_no = $value['order_no'];
+               $query2 = "SELECT sum(product_price) as product_price from product_order_data where order_no='".$order_no."'";
+               $result2 = $objU->getResult($query2);
+
+               $order_date = $value['order_date'];
+               $order_no = $value['order_no'];
+               $product_price = $result2[0]['product_price'];
+               $status = $value['status'];
+               $total_price += $product_price;
+               ?>
+                <tr class="odd">
+                    <td><?php echo $order_date; ?></td>
+                    <td><?php echo $order_no; ?></td>
+                    <td><?php echo $cuurencysymbol; ?><?php echo number_format($total_price,2); ?></td>
+                    <td><?php echo $status; ?></td>
+                    <td><a href="view-order?order_no=<?php echo $value['id']; ?>"  style="background:steelblue;color:white;padding:5px">View Detail</a></td>
+                   
+                </tr>
+               <?php
+            }
+        }
+    ?>
+												</tbody>
+											</table>
+										</div>
+									</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php }?>
+
+
 <section class="clearfix">
 	<div class="container-fluid">
 		<div class="row">
@@ -922,6 +1013,7 @@ $query = "SELECT * FROM testimonials WHERE test_id != (SELECT MAX(test_id) FROM 
 </section>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 <style>
 #hello {
     padding:5px 5px 5px 17px;

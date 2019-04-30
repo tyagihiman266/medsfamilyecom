@@ -12,6 +12,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
  
 
 RewriteRule ^dashboard$ dashboard.php
+RewriteRule ^print_invoice/(.*).htm$ ./fpdf/index.php?cat_id=$1
+RewriteRule ^re_order$ reorder.php
 RewriteRule ^view_product$ view_product.php
 RewriteRule ^add_product$ add_product.php
 RewriteRule ^index$ index.php
