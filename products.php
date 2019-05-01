@@ -242,13 +242,15 @@ foreach($productimages as $varientkey => $varientimg) {
 
               }
              
-             ?><div style = "text-align:center;display:inline-block;margin-top:30px" class = "product-img-wrap" >
-  <img class="mySlides " src="<?php echo $url;?>" style="width:100%;height:250px;text-align:center"/></div>
+             ?>
+	 <center><div style = "text-align:center;display:inline-block;margin-top:30px;float:left;" class = "product-img-wrap" >
+  <img class="mySlides " src="<?php echo $url;?>" style="width:100%;height:250px;text-align:center"/></div></center>
 
   <?php
 
 } 
    ?>
+	 <div class="clearfix"></div>
 <?php echo $productsingle[0]['safety_information']; ?>
 									</div>
 								</div>
