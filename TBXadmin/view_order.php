@@ -14,8 +14,10 @@ $ip_data = json_decode($ip_data_in,true);
 $currencyConverter= $ip_data[$resultorder[0]['shoping_currency']]['val'];
 //print_r($result);
 $statusid=$resultorder[0]['status'];
+$order_no_invoice=$resultorder[0]['order_no'];
 $uid=$resultorder[0]['user_id'];
 $Orderstatus=$user->getResult("select * from order_status WHERE id='".$statusid."'");
+$Order_invoice_detail=$user->getResult("select * from order_invoice WHERE order_no='".$order_no_invoice."'");
 $userdata=$user->getResult("select * from user_data  WHERE id='".$uid."'");
 //print_r($userdata);
 if(isset($_REQUEST['status']))
@@ -48,6 +50,14 @@ if(isset($_REQUEST['submiturl'])){
       header("refresh:2;url=view_order.php?edit=".$_GET['edit']);
       
   }
+  if (isset($_REQUEST['create'])) {
+    $myorder = $resultorder[0]['order_no'];
+    
+    $abc = $user->QueryInsert("INSERT INTO order_invoice (order_no) VALUES ('$myorder')"); 
+    $sms="<p style='text-align:center;color:green;'>Invoice Generated Successfully.</p>";
+        header("refresh:2;url=view_order.php?edit=".$_GET['edit']);
+  }
+
 
   if(isset($_REQUEST['submitshipmentcoment'])){
     $colArray = array(
@@ -233,10 +243,19 @@ $enq_message.='<table cellspacing="0" id="view_order" class="tablesorter" border
             echo $sms;
           } ?> 
        <div style="float:right;">
-            
+          
      <a href="view_order.php?edit=<?php echo $id ; ?>&send=email"><span class="btn btn-primary btn-small">Send Email</span></a>
      <a href="view_order.php?edit=<?php echo $id ; ?>&status=3" class="btn btn-danger btn-small" onClick="return confirm('Are you sure want to Cancel')">Cancel</a>
-      <a href="view_order.php?edit=<?php echo $id ; ?>&status=3" class="btn btn-danger btn-small" onClick="return confirm('Are you sure want to Cancel')">Invoice</a>
+    <?php if($Order_invoice_detail[0]['order_no']==$resultorder[0]['order_no']){?>
+      
+      <a href="print_invoice/<?php  echo ($Order_invoice_detail[0]['order_no']); ?>.htm" class="btn btn-danger btn-small">Download Invoice</a>
+   <?php } 
+    else
+    {?>
+      <a href="view_order.php?edit=<?php echo $id ; ?>&create=invoice" class="btn btn-danger btn-small")>Invoice</a>
+   <?php }?> 
+    
+    
     <a href="view_order.php?edit=<?php echo $id ; ?>&status=2" class="btn btn-warning btn-small" onClick="return confirm('Are you sure want to Hold')">Hold</a>
     <?php if($resultorder[0]['status'] =='5'){?>
       <a href="view_order.php?edit=<?php echo $id ; ?>&status=4"><span class="btn btn-success btn-small">Received by Customer</span></a>

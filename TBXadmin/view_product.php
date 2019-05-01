@@ -131,7 +131,7 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
             $j=0;    
             $row = $objT->getResult("select * from tbl_product order by id desc");
             $count = count($row);
-            echo "Total No. of Productds - ".$count;
+            echo "Total No. of Products - ".$count;
             $img=array();
 
 
