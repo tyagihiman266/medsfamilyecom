@@ -38,7 +38,7 @@ $i++;
         </tbody></table>
         <?php  
         $setData .= trim($rowData) . "\n"; 
-    
+     
     
     //header("Content-type: application/octet-stream");
     //header('Content-Disposition: attachment; filename=download.xls');
