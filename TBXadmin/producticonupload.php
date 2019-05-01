@@ -2,17 +2,17 @@
 include ("include/DBclass.php");
 $id=$_POST['id'];
 
-$target_dir = "upload/product/varient/big/";
+$target_dir = "upload/product/big/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $image_name = basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-mysqli_query($connect,"INSERT INTO add_product_packaging_image (product_id,	packaging_image)
-         VALUES ('$id','$image_name')");
+mysqli_query($connect,"INSERT INTO tbl_pro_img (p_id,	image,front_status)
+         VALUES ('$id','$image_name',1)");
  
   if(mysqli_affected_rows($connect) > 0){
- echo "<p>Query Submitted</p>";header("refresh:2;url=add_product_packaging_images"); ; 
+ echo "<p>Query Submitted</p>";header("refresh:2;url=add_product_icons.php"); ; 
 
 } else {
  echo "Something Went Wrong<br />";

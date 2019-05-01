@@ -7,63 +7,32 @@
 	$p1side = "manage_number";
 	$side = "manage_number";
 	 $objT = new User();
-	 ?>
-   <?php
-	 
-	 if(isset($_REQUEST['edit']))
-     { 
-    $id=$_REQUEST['edit'];
-    $row1 = $objT->getResultById('phone_number',$id);
-     }
-	 
-	 if(isset($_POST['submit']))
-	 { 
-    
-    $colArray = array(
-      'number'       => $_POST['number'],
-	   'Country'        => $_POST['Country']
-     
-    );
-     
-  
-
-	
-
-    $row1 = $objT->insertQuery($colArray,'phone_number');
-    if($row1)
-    {  
-       $sms="<p style='text-align:center;color:green;'>Number Added Successfully.</p>";
-       header("refresh:2;url=manage_number");   
-     
-    }
-    else
-    {
-        $sms="Something Went Wrong";
-    }
-		 
-	 }
-elseif(isset($_POST['Update']))
+   $id=$_REQUEST['edit'];
+   if(isset($_POST['Update']))
 {   
 	
   $colArray = array(
-    'Country'        => $_POST['Country'],
-    'number'       => $_POST['number']);
+    'packaging_image'        => $_POST['packaging_image']);
+    
   
 	
 	
-	 $query1 = $objT->updateQuery($colArray,'phone_number',$id);
+	 $query1 = $objT->updateQuery($colArray,'add_product_packaging_image',$id);
 
    if($query1)
 	{
 		$sms = "<p style='text-align:center;color:green;'>Number updated successfully</p>"; 
-		header("refresh:2;url=manage_number");   
+		header("refresh:2;url=add_product_packaging_image");   
 	
-	}
+	}}
 
 	
-	
-}
-?>
+   
+   ?>
+   
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -144,29 +113,23 @@ elseif(isset($_POST['Update']))
                                       { ?>
                           <option value="<?php echo $val['id'] ?><?php echo $val[''] ?>"><?php echo $val['name'] ?></option>
                         <?php } ?>
-                        <input type="file" name="fileToUpload" id="fileToUpload" style="margin-top:20px;margin-bottom:10px">
-                        
-                        
-                        <input type="submit" class="btn btn-success" name="submit" id="submit" value="Save">
-                        <input type="button" class="btn btn-info" value=" Cancel" onClick="window.location.href = 'manage_number'">
-</form>
-
-
-                      </select>
-
-   
-                      
-    
-    
-                    
-					 <div style="margen-left:140px;">
+                        <input type="file" name="fileToUpload" id="fileToUpload" style="margin-top:20px;margin-bottom:10px">                 
+                        <div style="margen-left:140px;">
                          <?php if(!isset($_REQUEST['edit'])) {?>
-                                                        
-                                                         
-                                                        <?php  }  else {?>             
-                                                        <input type="submit" class="btn btn-success" name="Update" id="Update" value="Update">
-                                                        <input type="button" class="btn btn-info" value=" Cancel" onClick="window.location.href = 'manage_number'"> 
-                                                        <?php  } ?>   
+                          <input type="submit" class="btn btn-success" name="submit" id="submit" value="Save">
+                        <input type="button" class="btn btn-info" value=" Cancel" onClick="window.location.href = 'add_product_packaging_image.php'"> 
+                          <?php  }
+                          else {?> 
+ 
+                        <input type="submit" class="btn btn-success" name="Update" id="Update" value="Update">
+                          <input type="button" class="btn btn-info" value=" Cancel" onClick="window.location.href = 'add_product_packaging_image.php'">
+                        <?php  } 
+                        ?>
+                        
+</form>
+                      </select>                    
+            
+                                                          
                       </div>
         </form>
                 </div><!-- /.box-body -->

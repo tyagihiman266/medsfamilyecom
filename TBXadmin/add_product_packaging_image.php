@@ -13,11 +13,11 @@ if(isset($_GET['ids'])){
 
 	 $deleteid = $_GET['ids'];
 	 
-	$sql =$objT->QueryDelete('user_data',$deleteid);
+	$sql =$objT->QueryDelete('add_product_packaging_image',$deleteid);
 	
 	if($sql){
-		$sms = "<p style='text-align:center;color:green;'>User deleted successfully</p>"; 
-    header("refresh:1;url=user_list");
+		$sms = "<p style='text-align:center;color:green;'>Image deleted successfully</p>"; 
+    header("refresh:1;url=add_product_packaging_image.php");
 	
 	}
 }
@@ -26,8 +26,8 @@ if(isset($_GET['ids'])){
 if($_GET['tag']=='ProgarmActivateDeactivate')
 
 { 
-   $query= $objT->updateStatus('user_data',"status",$_GET['active'],$_GET['id']);
-   header("refresh:2;url=user_list");
+   $query= $objT->updateStatus('add_product_packaging_image',"status",$_GET['active'],$_GET['id']);
+   header("refresh:2;url=add_product_packaging_image.php");
 }	
 	$query = "SELECT * FROM add_product_packaging_image";
 	$results = $objT->getResult($query);
@@ -69,7 +69,7 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
 			  <form id="tab" name="form1" method="post" action="">
                 <div class="box-header">
                   <h3 class="box-title">Add Product Packaging Image</h3>
-				  <div style="float:right;"><a href="add_product_packaging_images"><span class="btn btn-success btn-small">Add Image</span></a>
+				  <div style="float:right;"><a href="add_product_packaging_images.php"><span class="btn btn-success btn-small">Add Image</span></a>
 				  	
 				  </div>
 
@@ -99,13 +99,13 @@ if($_GET['tag']=='ProgarmActivateDeactivate')
                         <td><?php echo $results[$x]['packaging_image']; ?></td>
 
 
-            						<td><a href="add_number?edit=<?php echo $results[$x]['id'];?>"><span class="btn btn-success btn-xs"><i class="fa fa-edit"></i>Edit</span></a>
-                         <a href="user_list?ids=<?php echo $results[$x]['id'];?>" class="btn btn-danger btn-xs" onClick="return confirm('Are you sure want to delete')">Delete</a>
+            						<td><a href="add_product_packaging_images.php?edit=<?php echo $results[$x]['id'];?>"><span class="btn btn-success btn-xs"><i class="fa fa-edit"></i>Edit</span></a>
+                         <a href="add_product_packaging_image.php?ids=<?php echo $results[$x]['id'];?>" class="btn btn-danger btn-xs" onClick="return confirm('Are you sure want to delete')">Delete</a>
             				    <?php if($results[$x]['status']==2){ ?>
-						                <a href="user_list?tag=ProgarmActivateDeactivate&active=1&id=<?php echo $results[$x]['id'];?>" onClick="return confirm('Are you sure to do this action.');" title="Activate/Deactivate Service"><span class="label label-success">Active</span></a>
+						                <a href="add_product_packaging_image?tag=ProgarmActivateDeactivate&active=1&id=<?php echo $results[$x]['id'];?>" onClick="return confirm('Are you sure to do this action.');" title="Activate/Deactivate Service"><span class="label label-success">Active</span></a>
                             <?php } 
                           else { ?>						
-                          <a href="user_list?tag=ProgarmActivateDeactivate&active=2&id=<?php echo $results[$x]['id'];?>"  onClick="return confirm('Are you sure to do this action.');" title="Activate/Deactivate Service">
+                          <a href="add_product_packaging_image?tag=ProgarmActivateDeactivate&active=2&id=<?php echo $results[$x]['id'];?>"  onClick="return confirm('Are you sure to do this action.');" title="Activate/Deactivate Service">
                          <span class="label label-danger">DeActive</span></a></td><?php 
                         } 
                         ?>

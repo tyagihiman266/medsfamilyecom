@@ -112,32 +112,25 @@
 				</a>
             </li>
 
-			<li  class="treeview <?php  if($side=='add_product_image'){ ?> active <?php } ?>">
-				<a href="add_product_image.php">
+			<li  class="treeview <?php  if($side=='add_product_images'){ ?> active <?php } ?>">
+				<a href="add_product_images.php">
 					<i class="fa fa-dashboard"></i>
 					<span>Add Product Image</span> 
-
 					
 				</a>
             </li>
-				<li  class="treeview <?php  if($side=='add_product_icon'){ ?> active <?php } ?>">
-				<a href="add_product_icon.php">
+				<li  class="treeview <?php  if($side=='add_product_icons'){ ?> active <?php } ?>">
+				<a href="add_product_icons.php">
 					<i class="fa fa-dashboard"></i>
 					<span>Add Product Icon</span> 
-
-					
 				</a>
             </li>
 			<li  class="treeview <?php  if($side=='add_product_packaging_image'){ ?> active <?php } ?>">
-				<a href="add_product_packaging_image">
+				<a href="add_product_packaging_image.php">
 					<i class="fa fa-dashboard"></i>
 					<span>Add Product Packaging Image</span> 
-
-					
 				</a>
             </li>
-
-            
             <?php /*<li  class="treeview <?php  if($side=='manage_shipping_country'){ ?> active <?php } ?>">
 				<a href="manage_shipping_country.php">
 					<i class="fa fa-dashboard"></i>
